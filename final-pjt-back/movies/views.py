@@ -18,3 +18,14 @@ def home_movies(request):
         serializer = HomeMovieSerializer(movies, many=True)
         return Response(serializer.data)
         
+
+@api_view(['GET'])
+def movie_detail(request, movie_pk):
+    if request.method == 'GET':
+        movie = get_object_or_404(Movie, pk=movie_pk)
+        serializer = MovieDetailSerializer(movie)
+        actor = movie.actor.all()
+        genre = movie.genres.all()
+        print(actor)
+        print(genre)
+        return Response(serializer.data)
