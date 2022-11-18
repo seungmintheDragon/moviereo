@@ -8,24 +8,24 @@
       <div class="slider">
         <div class="slides">
           <div id="slide-1" class="user-wrap">
-            <p class="movie_title">{{random_movies[0].title}}</p>
-            <p class="movie_date">{{random_movies[0].release_date.substr(0,4)}}</p>
-            <p class="movie_vote">⭐{{random_movies[0].vote_average}}</p>
-            <img  class="titleimg" :src="`https://image.tmdb.org/t/p/original${random_movies[0].backdrop_path}`" alt="">
+            <p class="movie_title">{{title_movie1?.title}}</p>
+            <p class="movie_date">{{title_movie1?.release_date.substr(0,4)}}</p>
+            <p class="movie_vote">⭐{{title_movie1?.vote_average}}</p>
+            <img  class="titleimg" :src="`https://image.tmdb.org/t/p/original${title_movie1?.backdrop_path}`" alt="">
             </div>
 
           <div id="slide-2" class="user-wrap">
-            <p class="movie_title">{{random_movies[1].title}}</p>
-            <p class="movie_date">{{random_movies[1].release_date.substr(0,4)}}</p>
-            <p class="movie_vote">⭐{{random_movies[1].vote_average}}</p>
+            <p class="movie_title">{{title_movie2?.title}}</p>
+            <p class="movie_date">{{title_movie2?.release_date.substr(0,4)}}</p>
+            <p class="movie_vote">⭐{{title_movie2?.vote_average}}</p>
             
-            <img class="titleimg"  :src="`https://image.tmdb.org/t/p/original${random_movies[1].backdrop_path}`"  alt=""></div>
+            <img class="titleimg"  :src="`https://image.tmdb.org/t/p/original${title_movie2?.backdrop_path}`"  alt=""></div>
 
           <div id="slide-3" class="user-wrap">
-            <p class="movie_title">{{random_movies[2].title}}</p>
-            <p class="movie_date">{{random_movies[2].release_date.substr(0,4)}}</p>
-            <p class="movie_vote">⭐{{random_movies[2].vote_average}}</p>
-            <img  class="titleimg"  :src="`https://image.tmdb.org/t/p/original${random_movies[2].backdrop_path}`" alt="">
+            <p class="movie_title">{{title_movie3?.title}}</p>
+            <p class="movie_date">{{title_movie3?.release_date.substr(0,4)}}</p>
+            <p class="movie_vote">⭐{{title_movie3?.vote_average}}</p>
+            <img  class="titleimg"  :src="`https://image.tmdb.org/t/p/original${title_movie3?.backdrop_path}`" alt="">
             </div>
 
         </div>
@@ -109,7 +109,10 @@ export default {
   name: 'HomeView',
   data(){
     return{
-      random_movies:null,
+      random_movies: null,
+      title_movie1:null,
+      title_movie2:null,
+      title_movie3:null,
     }
   },
   // components: {MovieCarousel},
@@ -121,9 +124,12 @@ export default {
       })
       .then((res)=>{
         this.random_movies = res.data
+        this.title_movie1 = res.data[0]
+        this.title_movie2 = res.data[1]
+        this.title_movie3 = res.data[2]
       })
       .catch((err)=>console.log(err))
-    }
+    },
 
 
   },

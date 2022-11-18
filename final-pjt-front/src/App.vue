@@ -28,9 +28,9 @@ export default {
   },
   methods: {
     islogin() {
-      console.log("here");
       this.$store.commit("logins");
     },
+    
   },
   created() {
     this.islogin();

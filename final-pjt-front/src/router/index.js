@@ -6,6 +6,7 @@ import RecommandView from '../views/RecommandView.vue'
 import LoginView from '../views/LoginView.vue'
 import SignUpView from '../views/SignUpView.vue'
 import LogoutView from '@/views/LogoutView'
+import MovieDetailView from '@/views/MovieDetailView'
 
 
 Vue.use(VueRouter)
@@ -40,6 +41,11 @@ const routes = [
     path: '/logout',
     name: 'logout',
     component: LogoutView
+  },
+  {
+    path: '/moviedetail/:movie_pk',
+    name: 'moviedetail',
+    component: MovieDetailView
   },
 ]
 

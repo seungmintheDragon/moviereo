@@ -24,9 +24,55 @@
         v-model="password2"
         class="text-light"
       />
-
       <input type="submit" value="SignUp" />
     </form>
+
+    <!-- 사인업 -->
+    <hr>
+    <br>
+    <!-- Signup Form -->
+    <div class="signup form-peice">
+        <form class="signup-form" action="#" method="post">
+
+          <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" name="username" id="name" class="name">
+              <span class="error"></span>
+          </div>
+
+          <div class="form-group">
+              <label for="email">Email Adderss</label>
+              <input type="email" name="emailAdress" id="email" class="email">
+              <span class="error"></span>
+          </div>
+
+          <div class="form-group">
+              <label for="phone">Phone Number - <small>Optional</small></label>
+              <input type="text" name="phone" id="phone">
+          </div>
+
+          <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" name="password" id="password" class="pass">
+              <span class="error"></span>
+          </div>
+
+          <div class="form-group">
+              <label for="passwordCon">Confirm Password</label>
+              <input type="password" name="passwordCon" id="passwordCon" class="passConfirm">
+              <span class="error"></span>
+          </div>
+
+          <div class="CTA">
+              <input type="submit" value="Signup Now" id="submit">
+              <a href="#" class="switch">I have an account</a>
+          </div>
+        </form>
+    </div><!-- End Signup Form -->
+
+
+
+
   </div>
 </template>
 

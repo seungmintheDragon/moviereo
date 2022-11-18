@@ -2,8 +2,8 @@
   <div>
     
         <div class="col">
-          <div class="card card-container border-0 moviecard">
-            <p class="movie-title">{{recomovie.title}}</p>
+          <div class="card card-container border-0 moviecard" @click="getMovieId()">
+            <p class="movie-title">{{recomovie.title}} </p>
             <img :src="`https://image.tmdb.org/t/p/w500${recomovie.poster_path}`" class="card-img-top " alt="..." style="width:22rem;height:30rem;">
           </div>
 
@@ -17,7 +17,13 @@
 <script>
 export default {
     name:'MovieRecommandCard',
-    props:{recomovie: Object,}
+    props:{recomovie: Object,},
+    methods:{
+      getMovieId(){
+        this.$router.push({name:'moviedetail', params:{movie_pk:this.recomovie.id}})
+      }
+    },
+    created(){}
 
 }
 </script>
