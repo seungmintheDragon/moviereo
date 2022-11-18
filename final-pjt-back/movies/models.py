@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 # Create your models here.
 class Genre(models.Model):
@@ -27,3 +28,17 @@ class Movie(models.Model):
     director = models.ManyToManyField(Director)
     
 
+class MovieComment(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,related_name='user', on_delete=models.CASCADE )
+    comment = models.TextField()
+    movie = models.ForeignKey(Movie, related_name='comment', on_delete=models.CASCADE, null=True)
+    # commentcomment = models.ForeignKey('self', related_name='comment_comment', on_delete=models.CASCADE, null=True)
+
+
+# 무비 코멘트와 댓글 코멘트 따로
+
+class CommentReply(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,related_name='reply_user', on_delete=models.CASCADE )
+    comment = models.TextField()
+    moviecomment = models.ForeignKey(MovieComment, related_name='replymoviecomment', on_delete=models.CASCADE, null=True)
+    parent = models.ForeignKey('self', related_name='reply', on_delete=models.CASCADE, null=True)

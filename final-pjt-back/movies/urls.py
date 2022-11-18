@@ -5,5 +5,6 @@ from . import views
 urlpatterns = [
     path('', views.home_movies),
     path('<int:movie_pk>/', views.movie_detail),
-    # path('<int:todo_pk>/', views.todo_update_delete),
+    path('<int:movie_pk>/comment/', views.movie_comment),
+    path('<int:movie_pk>/comment/<int:comment_pk>/', views.replycomment),
 ]

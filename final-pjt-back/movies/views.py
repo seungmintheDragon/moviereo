@@ -29,3 +29,27 @@ def movie_detail(request, movie_pk):
         print(actor)
         print(genre)
         return Response(serializer.data)
+
+
+@api_view(['GET','POST'])
+def movie_comment(request, movie_pk):
+    if request.method =='GET':
+        comment = MovieComment.objects.filter(movie=movie_pk)
+        serializer = MovieCommentSerializer(data=comment, many=True)
+
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
+        if request.user.is_authenticated:
+            serializer = MovieCommentSerializer(data=request.data)
+
+            if serializer.is_valid(raise_exception=True):
+                serializer.save(user=request.user, movie=movie_pk)
+                return Response(serializer.data)
+
+
+@api_view(['GET','POST'])
+def replycomment(request, movie_pk, comment_pk):
+    if request.method =='GET':
+        reply = CommentReply.objects.filter()
+        pass
