@@ -35,7 +35,7 @@ def movie_detail(request, movie_pk):
 def movie_comment(request, movie_pk):
     if request.method =='GET':
         comment = MovieComment.objects.filter(movie=movie_pk)
-        serializer = MovieCommentSerializer(data=comment, many=True)
+        serializer = MovieCommentSerializer(comment, many=True)
 
         return Response(serializer.data)
 

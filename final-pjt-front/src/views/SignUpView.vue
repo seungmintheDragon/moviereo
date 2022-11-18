@@ -31,7 +31,7 @@
     <hr>
     <br>
     <!-- Signup Form -->
-    <div class="signup form-peice">
+    <!-- <div class="signup form-peice">
         <form class="signup-form" action="#" method="post">
 
           <div class="form-group">
@@ -68,7 +68,7 @@
               <a href="#" class="switch">I have an account</a>
           </div>
         </form>
-    </div><!-- End Signup Form -->
+    </div>End Signup Form -->
 
 
 

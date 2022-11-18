@@ -1,5 +1,7 @@
 <template>
-  <div class="detail">
+<div>
+
+    <div class="detail">
     <div>
     <img class="backdropimg"  :src="`https://image.tmdb.org/t/p/original${movie_detail?.backdrop_path}`" alt="">
     </div>
@@ -7,11 +9,18 @@
     <div class="info">
         <img class="poseterimg"  :src="`https://image.tmdb.org/t/p/original${movie_detail?.poster_path}`" alt="">
         <span class="detail_title"> {{movie_detail?.title}} </span>
+        <!-- 코멘트 -->
+        <form @submit.prevent="movieComment">
+            <input type="text" v-model="movie_comment">
+        </form>
 
     </div>
 
 
+
   </div>
+
+</div>
 </template>
 
 <script>
@@ -22,6 +31,7 @@ export default {
     data(){
         return{
             movie_detail: null,
+            movie_comment:null,
         }
     },
     methods:{
@@ -35,6 +45,23 @@ export default {
             })
             .catch((err)=>console.log(err))
         },
+        movieComment(movie_pk){
+            axios({
+                method:'post',
+                url:`http://127.0.0.1:8000/movies/${movie_pk}/comment/`,
+                headers:localStorage.getItem('jwt'),
+                data:{
+                    comment : this.movie_comment
+                }
+            })
+            .then((res)=>{
+                console.log(res)
+            })
+            .catch((err)=>{
+                console.log(err)
+            })
+            
+        }
     },
     created(){
         this.getMovieDetail(this.$route.params.movie_pk)
