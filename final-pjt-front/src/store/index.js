@@ -12,12 +12,16 @@ export default new Vuex.Store({
   getters: {},
   mutations: {
     logins(state) {
-      console.log("????????????");
       if (localStorage.getItem("jwt")) {
         state.is_logined = true;
       } else {
         state.is_logined = false;
       }
+    },
+    // 로그아웃기능
+    logout(state) {
+      localStorage.removeItem('jwt')
+      state.is_logined = false
     },
   },
   actions: {},

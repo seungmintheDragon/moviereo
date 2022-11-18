@@ -5,6 +5,8 @@ import RecommandView from '../views/RecommandView.vue'
 // import RecommandView from '../views/RecommandView.vue'
 import LoginView from '../views/LoginView.vue'
 import SignUpView from '../views/SignUpView.vue'
+import LogoutView from '@/views/LogoutView'
+
 
 Vue.use(VueRouter)
 
@@ -33,6 +35,11 @@ const routes = [
     path: '/signup',
     name: 'signup',
     component: SignUpView
+  },
+  {
+    path: '/logout',
+    name: 'logout',
+    component: LogoutView
   },
 ]
 
