@@ -2,9 +2,12 @@
   <div>
     
         <div class="col">
-          <div class="card card-container border-0 moviecard" @click="getMovieId()">
+          <div class="card card-container border-0 moviecard" 
+          @click="getMovieId()">
             <p class="movie-title">{{recomovie.title}} </p>
-            <img :src="`https://image.tmdb.org/t/p/w500${recomovie.poster_path}`" class="card-img-top " alt="..." style="width:22rem;height:30rem;">
+            <img :src="`https://image.tmdb.org/t/p/w500${recomovie.poster_path}`" class="card-img-top " alt="..."
+            style="width:20rem; height:30rem;" 
+            >
           </div>
 
     </div>
@@ -32,7 +35,8 @@ export default {
 .moviecard{
   background-color: black;
   box-shadow: 10px 10px 30px black;
-  position: relative
+  position: relative;
+
 
   }
 
@@ -49,6 +53,7 @@ export default {
 .card-container{
   position:relative;
   background-color: black;
+
 
 }
 

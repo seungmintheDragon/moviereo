@@ -12,6 +12,7 @@
             <p class="movie_date">{{title_movie1?.release_date.substr(0,4)}}</p>
             <p class="movie_vote">⭐{{title_movie1?.vote_average}}</p>
             <img  class="titleimg" :src="`https://image.tmdb.org/t/p/original${title_movie1?.backdrop_path}`" alt="">
+           
             </div>
 
           <div id="slide-2" class="user-wrap">
@@ -206,9 +207,6 @@ export default {
     -webkit-overflow-scrolling: touch;
   }
 
-
-
-
   .slides::-webkit-scrollbar {
     width: 10px;
     height: 10px;
@@ -232,7 +230,7 @@ export default {
     transition: transform 0.8s;
     position: relative;
     display: flex;
-    justify-content: center;
+    justify-content: right;
     align-items: center;
     font-size: 100px;
     mask-image: linear-gradient(to top, transparent 5%, black 50%);
@@ -291,6 +289,7 @@ export default {
   .slider > a:focus {
     background: rgb(80, 79, 79);
   }
+
   
 /* 이미지 테스트 */
 /* .testimg {

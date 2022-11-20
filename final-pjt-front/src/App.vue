@@ -90,6 +90,22 @@ nav a.router-link-exact-active {
   font-family: "NeoLT";
   src: url("../src/assets/fonts/NanumSquareNeoOTF-aLt.otf");
 }
+@font-face {
+  font-family: "PreB";
+  src: url("../src/assets/fonts/Pretendard-Bold.otf");
+}
+@font-face {
+  font-family: "PreM";
+  src: url("../src/assets/fonts/Pretendard-Medium.otf");
+}
+@font-face {
+  font-family: "PreR";
+  src: url("../src/assets/fonts/Pretendard-Regular.otf");
+}
+@font-face {
+  font-family: "PreS";
+  src: url("../src/assets/fonts/Pretendard-SemiBold.otf");
+}
 
 .dinone {
   display: none;
