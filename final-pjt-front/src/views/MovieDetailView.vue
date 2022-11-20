@@ -2,11 +2,14 @@
 <div>
 
     <div class="detail">
+        <!-- 배경 포스터 -->
         <div>
             <img class="backdropimg"  :src="`https://image.tmdb.org/t/p/original${movie_detail?.backdrop_path}`" alt="">
         </div>
+
         <!-- movie 기본 정보 -->
         <div class="info">
+
             <!-- 포스터 -->
             <div style="background-color:transparent;">
               <img class="poseterimg"  
@@ -47,18 +50,19 @@
                     "> 줄거리 </summary>
                     <div class="overview" >
                         {{movie_detail?.overview}}
-                        <hr>
                     </div>
                 </details>
                 <div v-else class="none_overview"> 
-
                 </div>
-                <hr style="margin-top:5rem;">
-                <!-- 감독 및 출연 -->
-                
+                <hr style="margin-top:5rem; width:50rem;">
+
+                <!-- 스태프-->
                 <div class="staff">
                     <!-- 감독  -->
-                    <div class="director" style="display: inline-block; float: left;background-color:transparent;">
+                    <div class="director" style="
+                    float: left;
+                    display: inline-block;
+                    background-color:transparent;">
                         <div class="staff_title">
                             감독
                         </div>
@@ -100,27 +104,97 @@
                         </div>
                     </div>
                 </div>
+
             </div>
-            <div class="">
-            <button> 예고편 보기 </button>
+
+            <!-- 사이드 바 -->
+            <div class="sidebar">
+                 <div>
+                    <a href="#" title="Button border orange" class="button btnFloat_trailer btnOrange"></a>
+                 </div>
+                 <div>
+                    <a href="#comments" title="Button border orange" class="button btnFloat_comment btnOrange"></a>
+                    <!-- <button onclick="location.href='#comments'"> 댓글 보기 </button> -->
+                 </div>
+            </div>
+
+           
+        </div>
+        <!-- 비슷한 영화 -->
+        <div>
+            <div class="similar_movie"> 
+                <h3 style="font-family: NeoBD; background-color:transparent;
+                text-align:left;"> 비슷한 영화 </h3>
+                    <div class= "row row-cols row-cols-md-3 g-3 " style="margin-top:5px
+                    background-color:transparent;width:14rem; height:21rem;">
+                    <movie-similar-card
+                    v-for="similar_movie in movie_detail.relate_movie"
+                    :key="similar_movie.pk"
+                    :similar_movie="similar_movie"
+                    />
+                    </div>
             </div>
         </div>
-        <hr>
-            <span>
-            </span>
+            
 
-            <!-- 코멘트 -->
-            <form @submit.prevent="movieComment(movie_detail?.id)">
 
-                <div @mouseleave="showCurrentRating(0)" style="display:inline-block;">
-                        <star-rating :show-rating="false" @current-rating="showCurrentRating" @rating-selected="setCurrentSelectedRating" :increment="0.5"></star-rating>
-                </div>
-                <div style="margin-top:10px;font-weight:bold;">{{currentRating}}</div>
-                <input type="text" v-model="movie_comment">
-            </form>
+        <!-- 코멘트 -->
+        <h3>댓글 작성</h3>
+        <form @submit.prevent="movieComment(movie_detail?.id)">
+
+            <div @mouseleave="showCurrentRating(0)" style="display:inline-block;">
+                <star-rating 
+                :star-size="20"
+                :show-rating="false" @current-rating="showCurrentRating" @rating-selected="setCurrentSelectedRating" :increment="0.5"></star-rating>
+            </div>
+            <div style="margin-top:10px;font-weight:bold;">{{currentRating}}</div>
+            <input type="text" v-model="movie_comment">
+        </form>
         
-        <!-- comment -->
-        <div class="comment_box">
+        <!-- 코멘트 모달 테스트 -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap"> 댓글 작성</button>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Movie Comments</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form @submit.prevent="movieComment(movie_detail?.id)">
+                <div style="font-family:NeoBD; font-size:2rem; margin-bottom:1rem;">
+                    {{movie_detail?.title}}
+                </div>
+                <div class="mb-3">
+                        <div @mouseleave="showCurrentRating(0)" style="display:inline-block;">
+                        <star-rating 
+                        :star-size="30"
+                        :show-rating="false" @current-rating="showCurrentRating" @rating-selected="setCurrentSelectedRating" :increment="0.5"></star-rating>
+                        </div>
+                        <span style="margin-left:1rem;">{{currentRating}}</span>
+                        <div>
+                        <label  for="recipient-name" class="col-form-label">별점을 선택하세요</label> <br>
+                        </div>
+                </div>
+                <hr>
+                <div class="mb-3">
+                    <label for="message-text" class="col-form-label"></label>
+                    <textarea class="form-control" id="message-text" placeholder="감상평/기대평을 작성해주세요" v-model="movie_comment" ></textarea>
+                </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                <button type="submit" class="btn btn-primary" >댓글 작성</button>
+            </div>
+            </div>
+        </div>
+        </div>
+
+
+        </div>
+        <!-- 댓글 확인란-->
+        <div id="comments" class="comment_box">
             <hr>
             <p style="font-family:NeoBD; font-size:1.5rem;"> 영화 감상평 </p>
             <hr>
@@ -137,9 +211,7 @@
             <span class="comment_content">
             {{comment.comment}}     
             </span>
-
             </div>
-        </div>
 
 
 
@@ -151,6 +223,7 @@
 <script>
 import axios from 'axios'
 import StarRating from 'vue-star-rating'
+import MovieSimilarCard from '../components/MovieSimilarCard.vue'
 
 export default {
     name: 'MovieDetailView',
@@ -165,7 +238,8 @@ export default {
         }
     },
     components: {
-    StarRating
+    StarRating,MovieSimilarCard
+
     },
     methods:{
         getMovieDetail(movie_pk){
@@ -309,8 +383,11 @@ export default {
     background-color:transparent;
     font-family: NeoLT;
     width: 50rem;
-    -webkit-line-clamp: 3;
+    /* -webkit-line-clamp: 3; */
     margin-bottom: 2rem;
+    word-break: keep-all;
+    line-height: 1.8rem;
+
 }
 .none-overview{
     width:7rem;
@@ -404,7 +481,7 @@ export default {
 }
 
 
-/* 테스트 */
+/* 줄거리 */
 
 details {
     margin-bottom: 1rem;
@@ -434,9 +511,9 @@ details[open] > summary {
     background-color:transparent;
 }
 
-/* details[open] > summary ~ * {
+details[open] > summary ~ * {
     animation: reveal 0.5s;
-} */
+}
 
 @keyframes reveal {
     from {
@@ -449,4 +526,101 @@ details[open] > summary {
         transform: translate3d(0, 0, 0);
     }
 }
+/* 비슷한 영화 */
+.similar_movie{
+    background-color:transparent;
+    /* position: absolute; */
+    top:50rem;
+    left:10rem;
+}
+/* 사이드바 */
+.sidebar{
+    /* float: left; */
+    background-color:transparent;
+
+}
+
+/* 버튼 */
+a.button {
+  display: block;
+  position: relative;
+  float: left;
+  width: 120px;
+  padding: 0;
+  margin-left: 5rem;
+  margin: 2rem;
+  font-weight: 600;
+  text-align: center;
+  line-height: 50px;
+  color: #FFF;
+  border-radius: 2rem;
+  transition: all 0.2s ;
+
+}
+
+.btnFloat {
+  background: none;
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.5);
+}
+.btnFloat_comment:before {
+  content: '🗨️ 댓글 보기';
+  font-family: NeoLT;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120px;
+  height: 50px;
+  border-radius: 2rem;
+  transition: all 0.2s ;
+  background-color:#3b3b3b;
+
+}
+.btnFloat_trailer:before {
+  content: '🎬 영상 보기';
+  font-family: NeoLT;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120px;
+  height: 50px;
+  border-radius: 2rem;
+  transition: all 0.2s ;
+  /* border: 2px solid #585858; */
+  background-color:#3b3b3b;
+
+}
+
+.btnOrange.btnFloat:before {
+  background:transparent;
+
+}
+
+.btnFloat:before {
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.4);
+}
+
+.btnFloat_comment:hover:before {
+  background-color:#0d70f1;
+  color: #FFF;
+  margin-top: -2px;
+  margin-left: 0px;
+  transform: scale(1.1,1.1);
+  -ms-transform: scale(1.1,1.1);
+  -webkit-transform: scale(1.1,1.1);
+  box-shadow: 0px 5px 5px -2px rgba(0, 0, 0, 0.25);
+}
+.btnFloat_trailer:hover:before {
+  background-color:#0d70f1;
+  color: #FFF;
+  margin-top: -2px;
+  margin-left: 0px;
+  transform: scale(1.1,1.1);
+  -ms-transform: scale(1.1,1.1);
+  -webkit-transform: scale(1.1,1.1);
+  box-shadow: 0px 5px 5px -2px rgba(0, 0, 0, 0.25);
+}
+
+
 </style>

@@ -3,10 +3,11 @@
     
         <div class="col">
           <div class="card card-container border-0 moviecard" 
-          @click="getMovieId()">
+          @click="getMovieId()"
+          style="width:16rem; height:24rem;">
             <p class="movie-title">{{recomovie.title}} </p>
-            <img :src="`https://image.tmdb.org/t/p/w500${recomovie.poster_path}`" class="card-img-top " alt="..."
-            style="width:20rem; height:30rem;" 
+            <img :src="`https://image.tmdb.org/t/p/w500${recomovie.poster_path}`" class="card-img-top cardimg " alt="..."
+            style="width:16rem; height:24rem;" 
             >
           </div>
 
@@ -52,15 +53,16 @@ export default {
 
 .card-container{
   position:relative;
-  background-color: black;
-
+  background-color:transparent;
 
 }
 
 .moviecard:hover {
-  background-color: rgba(0,0,0,0.5)  ;
-  opacity: 0.5;
+  background-color:transparent;
+}
 
+.cardimg:hover{
+  opacity: 0.3;
 }
 
 
@@ -75,10 +77,9 @@ export default {
   font-size: 1.4rem;
   background-color:transparent;
   word-wrap: break-word;
-
-
-
-
+  text-shadow: 0.2rem 0.2rem 5rem black ;
+  /* -webkit-text-stroke-width: 0.8px;
+  -webkit-text-stroke-color: rgb(8, 8, 8); */
   }
   
 
@@ -86,6 +87,8 @@ export default {
 .moviecard:hover .movie-title{
   opacity: 1;
   color: white;
+  word-break: keep-all;
+
   /* z-index: 5 ; */
 
 

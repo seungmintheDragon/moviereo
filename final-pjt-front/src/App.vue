@@ -5,6 +5,7 @@
       <router-link to="/recommand">영화 추천</router-link> |
       <router-link to="/about">마이페이지</router-link> |
       <input class="searchbar" type="text" placeholder="search bar" /> |
+      
       <span :class="{ dinone: is_logined }">
         <router-link to="/login">로그인</router-link> |
         <router-link to="/signup">회원 가입</router-link>
@@ -63,6 +64,10 @@ nav a {
 nav a.router-link-exact-active {
   color: #ffdb3b;
 }
+nav a:hover {
+  color: #ffdb3b;
+}
+
 
 .searchbar {
   border-radius: 30px;

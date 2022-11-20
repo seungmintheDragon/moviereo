@@ -85,7 +85,8 @@
       <!-- 추천 영화 -->
       <div class='recommand_movie1'>
         <h3 style="font-family: NeoBD;"> 당신을 위한 추천 영화 </h3>
-        <div class= "row row-cols row-cols-md-5 g-5 outcard" style="margin-top:5px">
+        <div class= "row row-cols row-cols-md-5 g-5 outcard" style="margin-top:5px   "
+        >
           <movie-recommand-card
           v-for="recomovie in random_movies"
           :key="recomovie.id"
@@ -183,8 +184,7 @@ export default {
   top:465px;
 }
 
-.outcard{
-}
+
 
 /* 상위 carousel 관련 CSS*/
   .title {
