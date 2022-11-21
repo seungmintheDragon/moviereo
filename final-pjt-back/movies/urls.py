@@ -13,5 +13,8 @@ urlpatterns = [
     # 영화 리스트
     path('likemovie/', views.likemovie),
     path('likemovienew/', views.likemovienew),
-    path('likemovielist/<int:movie_pk>/<int:list_pk>/', views.likemoviecreate)
+    path('likemovielist/<int:movie_pk>/<int:list_pk>/', views.likemoviecreate),
+
+    # 코멘트 리스트
+    path('comment/', views.commentlist),
 ]

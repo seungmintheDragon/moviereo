@@ -93,3 +93,11 @@ def likemoviecreate(request, movie_pk, list_pk):
         #     if serializer.is_valid(raise_exception=True):
         #         serializer.save(user=request.user, movies=movie)
         #     return Response(serializer.data)
+
+#코멘트 리스트
+@api_view(['GET'])
+def commentlist(request):
+    if request.method == 'GET':
+        comment = MovieComment.objects.all().filter(user=request.user)
+        serializer = MovieCommentSerializer(comment, many=True)
+        return Response(serializer.data)
