@@ -4,7 +4,7 @@
       <router-link to="/">메인</router-link> |
       <router-link to="/recommand">영화 추천</router-link> |
       <router-link to="/about">마이페이지</router-link> |
-      <input class="searchbar" type="text" placeholder="search bar" /> |
+      <input class="searchbar" type="text" placeholder="search bar" v-model="searchinput" @input="search_movie"/> |
       
       <span :class="{ dinone: is_logined }">
         <router-link to="/login">로그인</router-link> |
@@ -20,8 +20,14 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: "app",
+  data() {
+    return{
+      searchinput: null
+    }
+  },
   computed: {
     is_logined() {
       return this.$store.state.is_logined;
@@ -32,6 +38,18 @@ export default {
       this.$store.commit("logins");
       this.$store.dispatch("movie_list_create")
     },
+    search_movie() {
+      axios({
+        method: 'GET',
+        url: `http://127.0.0.1:8000/movies/search/${this.searchinput}/`
+      })
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    }
     
   },
   created() {

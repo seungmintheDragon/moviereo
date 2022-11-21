@@ -9,7 +9,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     is_logined: false,
-    user_movie_list: [],
+    user_movie_list: null,
   },
   getters: {},
   mutations: {
@@ -49,6 +49,7 @@ export default new Vuex.Store({
     logout(state) {
       localStorage.removeItem('jwt')
       state.is_logined = false
+      state.user_movie_list = null
     },
   },
   actions: {
