@@ -32,6 +32,7 @@ keyword_list = set()
 
 
 for i in range(1,30):
+    print(i)
     urls = f'https://api.themoviedb.org/3/movie/popular?api_key=6f6513726d3b3eef83b5927098909d71&language=ko-KR&page={i}'
 
     datas = requests.get(urls)
@@ -150,6 +151,7 @@ for i in range(1,30):
             }
         })
 
+print(len(movies_json_data))
 # 영화 json 파일 쓰기
 file_path_movie = './movies/fixtures/movie.json'
 

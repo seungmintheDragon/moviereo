@@ -21,7 +21,7 @@ class Relatemovie(models.Model):
 
 class Movie(models.Model):
     title = models.CharField(max_length=100)
-    release_date = models.DateField()
+    release_date = models.DateField(null=True)
     popularity = models.FloatField()
     vote_count = models.IntegerField()
     vote_average = models.FloatField()
