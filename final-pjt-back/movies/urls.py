@@ -6,6 +6,7 @@ urlpatterns = [
     path('', views.home_movies),
     path('<int:movie_pk>/', views.movie_detail),
     path('<int:movie_pk>/comment/', views.movie_comment),
+    path('<int:movie_pk>/comment/<int:comment_pk>/', views.movie_comment_dp),
     # path('<int:movie_pk>/comment/<int:comment_pk>/', views.replycomment),
     path('search/<str:movie_title>/', views.searchmovie),
     # 추천 페이지

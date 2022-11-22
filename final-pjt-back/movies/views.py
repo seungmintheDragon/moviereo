@@ -47,6 +47,20 @@ def movie_comment(request, movie_pk):
                 serializer.save(user=request.user, movie=moviec)
                 return Response(serializer.data)
 
+@api_view(['PUT','DELETE'])
+@permission_classes([IsAuthenticated])
+def movie_comment_dp(request, movie_pk, comment_pk):
+    comment = MovieComment.objects.get(pk=comment_pk)
+    if request.method == 'DELETE':
+        comment.delete()
+    elif request.method == 'PUT':
+        serializer = MovieCommentSerializer(comment, data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data)
+        
+
+
 @api_view(['GET','POST'])
 def searchmovie(request, movie_title):
     if request.method == 'GET':
@@ -54,10 +68,34 @@ def searchmovie(request, movie_title):
             'title': movie_title,
         }
         # 쿼리 셋 유니온 기능 활용하기.
-        # subject = Movie.objects.all().filter(title__contains=movie_title)
         subject = Movie.objects.all().filter(title__contains=movie_title)
         serializer = MovieDetailSerializer(subject, many=True)
         return Response(serializer.data)
+
+    # elif mode in ('release_date', 'vote_average', 'popularity'):
+    #     if mode != 'vote_average':
+    #         movies = Movie.objects.order_by(f'-{mode}')[:100]
+    #     else:
+    #         movies = Movie.objects.annotate(vote_average=(F('tmdb_vote_sum') + F('our_vote_sum')) / (F('tmdb_vote_cnt') + F('our_vote_cnt'))).order_by('-vote_average')[:100]
+    # elif mode in ('director', 'actor', 'title'):
+    # # 조회 2. mode - 감독별, 배우별, 영화명별
+    #     inputValue = request.GET.get('inputValue')
+    #     if mode == 'director':
+    #         # MtoM 관계에서 원하는 조건을 가지는 영화들을 가져오는 방법
+    #         # https://docs.djangoproject.com/en/3.2/topics/db/examples/many_to_many/
+    #         movies = Movie.objects.filter(Q(directors__name__icontains=inputValue)|Q(directors__original_name__icontains=inputValue)).distinct()[:100]
+    #     elif mode == 'actor':
+    #         movies = Movie.objects.filter(Q(actors__name__icontains=inputValue)|Q(actors__original_name__icontains=inputValue)).distinct()[:100]
+    #     else:
+    #         # 한글 제목이나 원본 제목이 사용자의 입력(inputValue)를 포함하는 영화들을 반환(대소문자 구분하지 않음)
+    #         movies = Movie.objects.filter(Q(title__icontains=inputValue)|Q(original_title__icontains=inputValue))[:100]
+    # # 조회 3. mode - 장르별
+    # elif mode == 'genre':
+    #     inputGenre = request.GET.get('inputGenre')
+    #     movies = Movie.objects.filter(genres__tmdb_genre_id=inputGenre)[:100]
+
+    # serializer = MovieListSerializer(movies, many=True)
+    # return Response(serializer.data)
 
 
 @api_view(['GET'])
@@ -101,3 +139,12 @@ def commentlist(request):
         comment = MovieComment.objects.all().filter(user=request.user)
         serializer = MovieCommentSerializer(comment, many=True)
         return Response(serializer.data)
+
+
+
+
+@api_view(['GET'])
+def recommend(request):
+    if request.method =='GET':
+        genres = request.data['genre']
+        pass
