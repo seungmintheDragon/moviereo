@@ -1,10 +1,7 @@
 <template>
-  <div>
-    <div class="col">
       <div
-        class="card card-container border-0 moviecard"
+        class="moviecard_2"
         @click="getMovieId()"
-        style="margin-right: 10rem"
       >
         <p class="movie-title2">{{ similar_movie.title }}</p>
         <img
@@ -20,8 +17,6 @@
           style="width: 14rem; height: 21rem"
         />
       </div>
-    </div>
-  </div>
 </template>
 
 <script>
@@ -50,6 +45,7 @@ export default {
 .moviecard_2 {
   border-radius: 1rem;
   background-color: transparent;
+  padding: 1rem;
 }
 .movie-title2 {
   width: 5.5rem;

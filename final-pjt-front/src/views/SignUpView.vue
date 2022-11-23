@@ -11,7 +11,7 @@
                 <input class="input_sign" type="password" name="pswd" placeholder="비밀번호 확인" required="" v-model="password2">
                 <button type="submit" class="button_sign">Sign up</button>
                 <p v-if="err_msg"
-                class="err_msg"
+                class="err_msg vibration"
                 >
                 {{err_msg}}</p>
               </form>
@@ -156,7 +156,10 @@ background-color: transparent;
   color: #FF5F5F; margin-top:1rem;
 }
 .err_msg.vibration {
-  animation: vibration .1s infinite;
+  animation: vibration 0.1s ;
+  animation-iteration-count: 3;
+
+;
 }
 
 @keyframes vibration {

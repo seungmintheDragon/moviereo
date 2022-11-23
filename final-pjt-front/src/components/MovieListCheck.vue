@@ -67,7 +67,7 @@ export default {
           headers: { Authorization: `Bearer ${localStorage.getItem("jwt")}` },
         })
           .then(() => {
-            this.$store.commit("like_movie_list");
+            this.$store.commit("like_movie_list")
           })
           .catch((err) => {
             console.log(err);
@@ -79,7 +79,8 @@ export default {
           headers: { Authorization: `Bearer ${localStorage.getItem("jwt")}` },
         })
           .then(() => {
-            this.$store.commit("like_movie_list");
+            this.$store.commit("like_movie_list")
+            ;
           })
           .catch((err) => {
             console.log(err);
