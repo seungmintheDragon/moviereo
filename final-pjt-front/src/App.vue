@@ -4,15 +4,21 @@
       <router-link to="/">메인</router-link> |
       <router-link to="/recommand">영화 추천</router-link> |
       <router-link to="/mypage">마이페이지</router-link> |
-      <input class="searchbar" type="text" placeholder="search bar" v-model="searchinput" @input="search_movie"/> |
-      
+      <input
+        class="searchbar"
+        type="text"
+        placeholder="search bar"
+        v-model="searchinput"
+        @keyup.enter="search_movie"
+      />
+      |
+
       <span :class="{ dinone: is_logined }">
         <router-link to="/login">로그인</router-link> |
         <router-link to="/signup">회원 가입</router-link>
       </span>
       <span :class="{ dinone: !is_logined }">
         <router-link to="/logout">로그아웃</router-link> |
-        
       </span>
     </nav>
     <router-view />
@@ -20,13 +26,13 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
   name: "app",
   data() {
-    return{
-      searchinput: null
-    }
+    return {
+      searchinput: null,
+    };
   },
   computed: {
     is_logined() {
@@ -36,21 +42,26 @@ export default {
   methods: {
     islogin() {
       this.$store.commit("logins");
-      this.$store.dispatch("movie_list_create")
+      this.$store.dispatch("movie_list_create");
     },
     search_movie() {
       axios({
-        method: 'GET',
-        url: `http://127.0.0.1:8000/movies/search/${this.searchinput}/`
+        method: "GET",
+        url: `http://127.0.0.1:8000/movies/search/${this.searchinput}/`,
       })
         .then((res) => {
-          console.log(res.data);
+          this.$store.commit("movie/SEARCHRES", res.data)
+        })
+        .then(() => {
+          this.searchinput = null
+          if (this.$route.path !== '/search/res') {
+            this.$router.push({name:'searchview'})
+          }
         })
         .catch((err) => {
           console.log(err);
-        })
-    }
-    
+        });
+    },
   },
   created() {
     this.islogin();
@@ -86,7 +97,6 @@ nav a.router-link-exact-active {
 nav a:hover {
   color: #ffdb3b;
 }
-
 
 .searchbar {
   border-radius: 30px;

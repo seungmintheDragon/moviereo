@@ -24,11 +24,13 @@ def home_movies(request):
 @api_view(['GET'])
 def movie_detail(request, movie_pk):
     if request.method == 'GET':
-        movie = get_object_or_404(Movie, pk=movie_pk)
-        serializer = MovieDetailSerializer(movie)
-        actor = movie.actor.all()
-        genre = movie.genres.all()
-        return Response(serializer.data)
+        try:
+            movie = Movie.objects.get(pk=movie_pk)
+            serializer = MovieDetailSerializer(movie)
+            return Response(serializer.data)
+        except:
+
+            return Response(status=status.HTTP_403_FORBIDDEN)
 
 
 @api_view(['GET','POST'])
@@ -150,4 +152,6 @@ def recommend(request):
         movies_id = recommande_movie.resforreco(request.data['movies'])
         movies = Movie.objects.filter(id__in=movies_id)
         serializer = MovieDetailSerializer(movies, many=True)
+        if len(serializer.data) == 0:
+            return Response(status=status.HTTP_406_NOT_ACCEPTABLE)
         return Response(serializer.data)

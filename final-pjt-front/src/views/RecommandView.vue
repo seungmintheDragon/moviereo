@@ -2,7 +2,7 @@
 <div class="recommand">
   <!-- 로그인이 되어있으면 뜨고, 안되어 있으면 로그인 페이지로 이동한다 -->
   <!-- 로그인 시 유저에 맞는 추천 페이지 -->
-  <router-link :to="{ name:'recomaintview'}">123123123123</router-link>
+  <router-link :to="{ name:'recomaintview'}">추천 받으시겟어요?</router-link>
   <div>
     <router-view />
   </div>

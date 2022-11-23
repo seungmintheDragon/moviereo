@@ -145,7 +145,7 @@
           </div>
           <!-- 댓글 작성 -->
           <!-- 코멘트 모달 테스트 -->
-          <div style="background: transparent; " >
+          <div style="background: transparent">
             <button
               type="button"
               class="button btn_write"
@@ -161,7 +161,7 @@
               tabindex="-1"
               aria-labelledby="exampleModalLabel"
               aria-hidden="true"
-              style="background-color : rgba(0,0,0,0.3);"
+              style="background-color: rgba(0, 0, 0, 0.3)"
             >
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -258,16 +258,13 @@
             <div class="modal_like" id="modal_like">
               <!-- 헤더로 -->
               <div class="like_header" style="background-color: transparent">
-                <div class="like_title">
-                    🛒 컬렉션에 담기
-                </div>
-              <!-- 닫기 버튼 -->
-                <div style="background-color: transparent; ">
+                <div class="like_title">🛒 컬렉션에 담기</div>
+                <!-- 닫기 버튼 -->
+                <div style="background-color: transparent">
                   <button
                     @click="modal_click"
                     type="button"
                     class="btn like_btn_close"
-
                   >
                     X
                   </button>
@@ -278,27 +275,24 @@
                 id="checklist"
                 style="margin: 1rem; background-color: transparent"
               >
-
                 <movie-list-check
                   class="form-check"
                   v-for="movie_list in user_movie_list"
                   :key="movie_list.id"
                   :movie_list="movie_list"
-                  :movie_id = "movie_detail.id"
+                  :movie_id="movie_detail.id"
                 >
                 </movie-list-check>
               </div>
               <!-- 새 컬렉션 만들기 -->
-              <div style="background-color: transparent;">
-                <button
-                  @click="collection_click"
-                  class="btn_crate_collection"
-                >
+              <div style="background-color: transparent">
+                <button @click="collection_click" class="btn_crate_collection">
                   새 컬렉션
                 </button>
                 <!-- 컬렉션 입력 받기 -->
                 <div class="create_collection" id="create_collection">
-                  <label class="create_collection_label">Collection Name</label><br>
+                  <label class="create_collection_label">Collection Name</label
+                  ><br />
                   <input
                     @keyup.enter="likeMovieNew"
                     type="text"
@@ -306,15 +300,22 @@
                     placeholder="컬렉션 제목을 입력하세요."
                     style="color: white"
                   />
-                  <div class="create_title_btn"> 
-                    <span  @click="likeMovieNew" style="font-family: PreB;font-size:0.8vW; 
-                    background-color: transparent; padding:0.1rem; margin:0;">
-                      생성 
+                  <div class="create_title_btn">
+                    <span
+                      @click="likeMovieNew"
+                      style="
+                        font-family: PreB;
+                        font-size: 0.8vw;
+                        background-color: transparent;
+                        padding: 0.1rem;
+                        margin: 0;
+                      "
+                    >
+                      생성
                     </span>
                   </div>
                 </div>
               </div>
-              
             </div>
           </div>
         </div>
@@ -415,7 +416,11 @@ export default {
         .then((res) => {
           this.movie_detail = res.data;
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+          window.open(`https://www.themoviedb.org/movie/${movie_pk}`)
+          this.$router.push({name:'home'})
+        });
     },
     movieComment(movie_pk) {
       axios({
@@ -896,7 +901,7 @@ a.button {
   top: auto;
   height: auto;
   bottom: 5%;
-  background-color:#121213;
+  background-color: #121213;
   border-radius: 10%;
   box-shadow: 3px 3px 10px rgba(5, 5, 5, 0.5);
 }
@@ -907,67 +912,67 @@ a.button {
   visibility: hidden;
   margin-top: 1rem;
 }
-.like_header{
-background-color: transparent;
-display:flex;
-font-size:20px;
-padding: 0.5rem;
+.like_header {
+  background-color: transparent;
+  display: flex;
+  font-size: 20px;
+  padding: 0.5rem;
 }
-.like_title{
-  left:1rem;
-  font-family: PreR; 
-  font-size: 1.4vW;
-  background-color: transparent; 
-  margin-left:4vW;
+.like_title {
+  left: 1rem;
+  font-family: PreR;
+  font-size: 1.4vw;
+  background-color: transparent;
+  margin-left: 4vw;
 }
-.like_btn_close{
-  background-color:rgb(250, 250, 250); 
-  font-family: NeoBD; 
+.like_btn_close {
+  background-color: rgb(250, 250, 250);
+  font-family: NeoBD;
   border: none;
   border-radius: 1rem;
-  margin-left:1vW;
+  margin-left: 1vw;
 }
-.btn_crate_collection{
-  color: rgb(255, 255, 255); 
-  font-family: PreM; 
+.btn_crate_collection {
+  color: rgb(255, 255, 255);
+  font-family: PreM;
   font-size: 1rem;
-  border:none;
+  border: none;
   border-radius: 8rem;
-  width:7rem;
+  width: 7rem;
   height: 2rem;
   background-color: #226efc;
 }
-.create_collection_label{
-  font-family: NeoLT; 
-  font-size: 0.2vW;
-  color: #6C6C6C;
+.create_collection_label {
+  font-family: NeoLT;
+  font-size: 0.2vw;
+  color: #6c6c6c;
   font-weight: bold;
   letter-spacing: 1px;
 }
-.create_title_btn{
+.create_title_btn {
   color: #226efc;
   text-align: right;
   margin-right: 2rem;
   margin-bottom: 1rem;
 }
 .create_title_btn:hover {
-  color:white;
+  color: white;
 }
-input[type=text] {
+input[type="text"] {
   background-color: transparent;
   border: none;
   border-bottom: 2px solid #226efc;
   border-top: 0px;
   border-radius: 0px;
-  font-family: NeoLT; 
+  font-family: NeoLT;
   font-weight: bold;
   outline: 0;
   margin-bottom: 20px;
   padding-left: 0px;
-  color: #ECF0F5;
+  color: #ecf0f5;
 }
-::placeholder{
-  font-size:0.8vW;
-  margin:auto;
+::placeholder {
+  font-size: 0.8vw;
+  margin: auto;
 }
 </style>

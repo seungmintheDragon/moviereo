@@ -58,7 +58,7 @@ with open('./fixtures/movie.json', 'rt', encoding='UTF-8') as input_file, open('
 def find_movie():
     pd.set_option('display.max_rows', 10000) # 행을 최대 100개까지 출력
     pd.set_option('display.max_columns', 10000) # 열을 최대 100개 까지 출력
-    pd.set_option('display.width', 2000) #출력 창 넓이 설정
+    pd.set_option('display.width', 10000) #출력 창 넓이 설정
 
     data = pd.read_csv('movieitem.csv', encoding='UTF-8')
     data = data[["title", "release_date", "popularity","vote_count","vote_average","genres","actor","director","id"]]

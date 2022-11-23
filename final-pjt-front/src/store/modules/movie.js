@@ -26,6 +26,7 @@ const state = () => {
     },
     searchmovie: null,
     recommandation: null,
+    searchres: null,
   };
 };
 
@@ -36,6 +37,9 @@ const mutations = {
   },
   RECO_MOVIE(state, res) {
     state.recommandation = res
+  },
+  SEARCHRES(state, res) {
+    state.searchres = res
   },
 };
 const actions = {
@@ -61,16 +65,25 @@ const actions = {
       headers: { Authorization: `Bearer ${localStorage.getItem("jwt")}` },
     })
       .then((res) => {
-        if (res.data.length === 0) {
-          return alert('영화를 더 골라주세요.')
-        }
         context.commit("RECO_MOVIE", res.data)
       })
       .then(() => {
         router.push({ name:'resultrecoview'})
       })
-      .catch((err)=>{console.log(err);})
-  }
+      .catch(()=>{
+        alert('영화를 더 골라주세요.')
+      })
+  },
+  random_recommnad(context) {
+    axios({
+      method:'get',
+      url:'http://127.0.0.1:8000/movies/',
+    })
+    .then((res)=>{
+      context.commit("SEARCH_MOVIE", res.data);
+    })
+    .catch((err)=>console.log(err))
+  },
 };
 
 export default {

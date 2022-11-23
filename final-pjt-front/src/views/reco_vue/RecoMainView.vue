@@ -16,16 +16,31 @@
       >
         찾기
       </button>
-      <button class="btn btn-outline-secondary" type="button">없어요!</button>
+      <button
+        class="btn btn-outline-secondary"
+        type="button"
+        @click="recomandrandom"
+      >
+        없어요! 랜덤 추천!
+      </button>
     </div>
     <div>
       <div v-for="cart_list in movie_cart" :key="cart_list.id">
         <p>
           {{ cart_list.title }}
         </p>
-        <button type="button" class="btn btn-primary" @click="cart(cart_list)">삭제</button>
+        <button type="button" class="btn btn-primary" @click="cart(cart_list)">
+          삭제
+        </button>
       </div>
-      <button type="button" class="btn btn-success" v-if="movie_cart.length" @click="recomive">영화 추천!</button>
+      <button
+        type="button"
+        class="btn btn-success"
+        v-if="movie_cart.length"
+        @click="recomive"
+      >
+        영화 추천!
+      </button>
     </div>
     <div>
       <div class="recommand_movie1">
@@ -40,7 +55,7 @@
             v-for="recomovie in search_list"
             :key="recomovie.id"
             :recomovie="recomovie"
-            :movie_cart = "movie_cart"
+            :movie_cart="movie_cart"
             @cart="cart"
           />
         </div>
@@ -75,7 +90,7 @@ export default {
     cart(movie) {
       if (this.movie_cart.indexOf(movie) === -1) {
         if (this.movie_cart.length === 7) {
-          return alert('7개만 선택해 주세요!')
+          return alert("7개만 선택해 주세요!");
         }
         this.movie_cart.push(movie);
       } else {
@@ -83,8 +98,10 @@ export default {
       }
     },
     recomive() {
-      this.$store.dispatch('movie/recommand_movie', this.movie_cart)
-      
+      this.$store.dispatch("movie/recommand_movie", this.movie_cart);
+    },
+    recomandrandom() {
+      this.$store.dispatch("movie/random_recommnad");
     },
   },
 };
