@@ -5,6 +5,7 @@
         class="form-check-input"
         type="checkbox"
         v-model="torf"
+        @click="addList"
         :id="movie_list.id"
       />
       <label
@@ -15,6 +16,7 @@
       >
         {{ movie_list.title }}
       </label>
+        <hr>
     </div>
     <!-- <div>
       <button class="collection_del_button" @click="deletelist"> X </button>
@@ -26,6 +28,11 @@
 import axios from "axios";
 export default {
   name: "MovieListCheck",
+  data(){
+    return{
+      
+    }
+  },
   props: {
     movie_list: Object,
     movie_id: Number,
@@ -47,6 +54,11 @@ export default {
     },
   },
   methods: {
+    // 컬렉션에 담았을 때 메세지 출력
+    addList(){
+      this.$emit('add-list', this.torf)
+
+    },
     makelist() {
       if (this.torf) {
         axios({

@@ -10,6 +10,10 @@
                 <input class="input_sign" type="password" name="pswd"  placeholder="비밀번호" required="" v-model="password1" >
                 <input class="input_sign" type="password" name="pswd" placeholder="비밀번호 확인" required="" v-model="password2">
                 <button type="submit" class="button_sign">Sign up</button>
+                <p v-if="err_msg"
+                class="err_msg"
+                >
+                {{err_msg}}</p>
               </form>
             </div>
         </div>
@@ -35,6 +39,7 @@ export default {
       username: null,
       password1: null,
       password2: null,
+      err_msg:null,
     };
   },
   methods: {
@@ -43,7 +48,7 @@ export default {
       const password = this.password1;
       const password2 = this.password2;
 
-      if(this.password != this.password2){
+      if(this.password1 != this.password2){
             return alert('비밀번호가 다릅니다!')
           }
       axios({
@@ -59,7 +64,10 @@ export default {
           this.$router.push({ name: "home" });
         })
         .catch((error) => {
-          console.log(error);
+          console.log(error.response.data)
+          if(error.response.data.username[0] === "A user with that username already exists."){
+            this.err_msg = "⚠️이미 등록된 사용자 이름입니다."
+          }
         });
     },
   },
@@ -139,5 +147,26 @@ background-color: transparent;
 .button_sign:hover{
 	background: #226efc;
 }
+
+.err_msg{
+  width: auto;
+  height: auto;
+  background-color:transparent;
+  font-family:NeoBD;
+  color: #FF5F5F; margin-top:1rem;
+}
+.err_msg.vibration {
+  animation: vibration .1s infinite;
+}
+
+@keyframes vibration {
+  from {
+    transform: rotate(1deg);
+  }
+  to {
+    transform: rotate(-1deg);
+  }
+}
+
 
 </style>

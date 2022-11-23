@@ -68,14 +68,14 @@ export default new Vuex.Store({
       movie_list_create(context, payload) {
         axios({
           method: 'POST',
-          url: `http://127.0.0.1:8000/movies/likemovielist/${payload.movie_id}/${payload.list_id}/`,
+          url: `http://127.0.0.1:8000/movies/likemovielist/${payload?.movie_id}/${payload?.list_id}/`,
           headers:{ 'Authorization': `Bearer ${localStorage.getItem('jwt')}`},
           data: {
-            'title': payload.title,
+            'title': payload?.title,
           }
         })
           .then(() => {
-            context.commit('like_movie_list')
+            context.commit('like_movie_list') 
           })
           .catch((err) => {
             console.log(err);
@@ -84,10 +84,10 @@ export default new Vuex.Store({
       movie_list_new(context, payload) {
         axios({
           method: 'POST',
-          url: `http://127.0.0.1:8000/movies/likemovienew/${payload.movie_id}/`,
+          url: `http://127.0.0.1:8000/movies/likemovienew/${payload?.movie_id}/`,
           headers:{ 'Authorization': `Bearer ${localStorage.getItem('jwt')}`},
           data: {
-            'title': payload.title,
+            'title': payload?.title,
           }
         })
           .then(() => {

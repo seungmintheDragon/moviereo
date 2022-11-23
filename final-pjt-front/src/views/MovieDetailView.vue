@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="detail">
+    <div class="detail" >
       <!-- 배경 포스터 -->
       <div>
         <img
@@ -263,8 +263,8 @@
                 <div style="background-color: transparent">
                   <button
                     @click="modal_click"
-                    type="button"
                     class="btn like_btn_close"
+                    style="color:white;"
                   >
                     X
                   </button>
@@ -281,6 +281,7 @@
                   :key="movie_list.id"
                   :movie_list="movie_list"
                   :movie_id="movie_detail.id"
+                  @add-list="addList"
                 >
                 </movie-list-check>
               </div>
@@ -516,12 +517,22 @@ export default {
         .then(() => {
           this.$store.commit("like_movie_list");
           this.collection_title = null;
+          this.collection_click()
         })
         .catch((err) => console.log(err));
     },
     similar_detail(similar_movie_pk) {
       console.log(similar_movie_pk);
     },
+    // 컬렉션 추가 메세지
+    addList(addmsg){
+        if(!addmsg){
+            alert("컬렉션에 담겼습니다.")
+        }
+        else{
+            alert("컬렉션에서 삭제되었습니다.")
+        }
+    }
   },
 
   created() {
@@ -537,7 +548,7 @@ export default {
 }
 .backdropimg {
   width: 100%;
-  opacity: 0.4;
+  opacity: 0.2;
   mask-image: linear-gradient(to top, transparent 5%, black 100%);
 }
 .poseterimg {
@@ -548,7 +559,8 @@ export default {
 .info {
   position: absolute;
   display: flex;
-  top: 5%;
+  top: 2%;
+  left: 10rem;
   margin: 5%;
   background-color: transparent;
 }
@@ -564,7 +576,7 @@ export default {
 .detail_title {
   font-family: NeoBD;
   font-size: 4rem;
-  width: 500px;
+  width: auto;
   background-color: transparent;
 }
 /* 연도 및 평점 */
@@ -597,8 +609,8 @@ export default {
   font-family: NeoBD;
   font-size: 1rem;
   border-radius: 15px;
-  border: solid 1px rgb(153, 153, 153);
-  color: rgb(153, 153, 153);
+  border: solid 0.15rem rgb(77, 77, 77);
+  color: rgb(209, 209, 209);
   background-color: transparent;
   margin: 0.2rem;
   padding: 0.4rem;
@@ -607,8 +619,9 @@ export default {
   font-family: NeoBD;
   font-size: 1rem;
   border-radius: 15px;
+  border: solid 0.15rem rgb(77, 77, 77);
   color: white;
-  background-color: rgb(153, 153, 153);
+  background-color: rgb(77, 77, 77);
   margin: 0.2rem;
   padding: 0.4rem;
 }
@@ -901,7 +914,8 @@ a.button {
   z-index: 200;
   top: auto;
   height: auto;
-  bottom: 5%;
+  right:2%;
+  bottom: 10%;
   background-color: #121213;
   border-radius: 10%;
   box-shadow: 3px 3px 10px rgba(5, 5, 5, 0.5);
@@ -920,17 +934,17 @@ a.button {
   padding: 0.5rem;
 }
 .like_title {
-  left: 1rem;
+  left: 0.7rem;
   font-family: PreR;
   font-size: 1.4vw;
   background-color: transparent;
-  margin-left: 4vw;
+  margin-left: 3vw;
 }
 .like_btn_close {
-  background-color: rgb(250, 250, 250);
+  background-color: rgb(110, 110, 110);
   font-family: NeoBD;
   border: none;
-  border-radius: 1rem;
+  border-radius: 2rem;
   margin-left: 1vw;
 }
 .btn_crate_collection {
@@ -945,7 +959,7 @@ a.button {
 }
 .create_collection_label {
   font-family: NeoLT;
-  font-size: 0.2vw;
+  font-size: 0.3vw;
   color: #6c6c6c;
   font-weight: bold;
   letter-spacing: 1px;
