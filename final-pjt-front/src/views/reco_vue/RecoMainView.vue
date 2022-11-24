@@ -23,13 +23,7 @@
         </button>
       </div>
 
-      <!-- <button
-        class="btn btn-outline-secondary"
-        type="button"
-        @click="recomandrandom"
-      >
-        없어요! 랜덤 추천!
-      </button> -->
+ 
 
     </div>
     <!-- 선택된 영화 보여주기 -->
@@ -48,11 +42,12 @@
     </div>
     <button
       type="button"
-      class="recobtn"
+      class="recobtn jittery"
       v-if="movie_cart.length"
+      style="font-family: NeoBD; width:10rem;height:3rem;" 
       @click="recomive"
     >
-      영화 추천!
+      나의 추천 영화
     </button>
 
 
@@ -61,9 +56,18 @@
     <!-- 선택할 영화 카드 보여주기 -->
     <div>
       <div class="recommand_movie1">
+        <div style="display:flex;">
         <h3 style="font-family: NeoBD" v-if="search_list">
           영화를 골라주세요!
         </h3>
+        <button
+        class="btn btn-outline-secondary"
+        type="button"
+        style="margin-left:2rem;font-family: NeoBD;border-radius:2rem;"
+        @click="recomandrandom">
+        다른 영화 보기
+        </button>
+        </div>
         <div
           class="row row-cols row-cols-md-5 g-5 outcard"
           style="margin-top: 5px"
@@ -190,17 +194,50 @@ margin: auto;
 
 .recobtn{
   border-radius: 0.7rem;
-  background-color: rgb(34, 111, 255);
+  background: linear-gradient(to right, rgb(22, 123, 255), rgb(205, 40, 255));
+
   color:white;
 
 }
 
-/* 꽃가루 */
-.canvas{
-  z-index:10;
-  pointer-events:none;
-  position: fixed;
-  top:0;
-  transform: scale(1.1);}
+/* 효과 */
+.jittery{
+  animation: jitterys 3s infinite;
+}
+@keyframes jitterys {
+  5%,
+  50% {
+    transform: scale(1);
+  }
+
+  10% {
+    transform: scale(0.9);
+  }
+
+  15% {
+    transform: scale(1.15);
+  }
+
+  20% {
+    transform: scale(1.15) rotate(-5deg);
+  }
+
+  25% {
+    transform: scale(1.15) rotate(5deg);
+  }
+
+  30% {
+    transform: scale(1.15) rotate(-3deg);
+  }
+
+  35% {
+    transform: scale(1.15) rotate(2deg);
+  }
+
+  40% {
+    transform: scale(1.15) rotate(0);
+  }
+}
+
 
 </style>

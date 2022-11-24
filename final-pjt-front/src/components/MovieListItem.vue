@@ -74,9 +74,11 @@ export default {
   position:absolute;
   margin-top:0.5rem;
   width:16rem;
+  margin-left: 1.5rem;
   text-align: center;
   height:auto;
   font-family: NeoRG;
+  font-size: 0.9vw;
   word-break: keep-all;
   background-color: transparent;
 

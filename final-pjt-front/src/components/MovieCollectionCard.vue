@@ -1,13 +1,16 @@
 <template>
 <div>
-    <div class="" @click="movie_detail" style="background-color:transparent">
-        <div style="background-color:transparent">
-            <img class="col_image" :src="`https://image.tmdb.org/t/p/original${movie.backdrop_path}`" alt="" style="background-color:transparent">
+    <div class="col" style="background-color:transparent;">
+    <div class="card card-container border-0 colcard "  @click="movie_detail" style="background-color:transparent; ">
+        <div style="background-color:transparent;">
+            <img class="col_image" :src="`https://image.tmdb.org/t/p/original${movie.backdrop_path}`" alt="" style="background-color:transparent; width:20rem;height:auto;    margin-left: 10rem;
+">
         </div>
-        <span style="background-color:transparent;color:black; font-family: NeoBD;"> 
+        <!-- <span style="background-color:transparent;color:black; font-family: NeoBD;"> 
             {{movie.title}}
-        </span>
+        </span> -->
 
+    </div>
     </div>
 </div>
 </template>
@@ -31,6 +34,20 @@ export default {
     border-radius: 1rem;
     width:25rem;
     height: 14rem;
-    box-shadow: 0.3rem 0.3rem 0.6rem black;
 }
+.colcard{
+    margin-top:4rem;
+    margin-left: -8rem;
+    width: 80rem;
+    background-color: black;
+
+}
+.colcard:hover {
+  background-color:transparent;
+}
+
+.col_image:hover{
+  opacity: 0.3;
+}
+
 </style>

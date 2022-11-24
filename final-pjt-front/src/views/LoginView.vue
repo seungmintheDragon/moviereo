@@ -1,17 +1,17 @@
 <template>
   <div>
-    <div class="signup_back">
-      <div class="main" style="background-color: rgba(0, 0, 0, 0.7)">
-        <div class="signup" style="background-color: transparent">
+    <div class="login_back">
+      <div class="main" style="background-color: rgba(0, 0, 0, 0.6)">
+        <div class="login" style="background-color: transparent">
           <form
             @submit.prevent="login"
             style="background-color: transparent"
           >
-            <label class="label_sign" style="background-color: transparent"
+            <label class="label_login" style="background-color: transparent"
               >Login</label
             >
             <input
-              class="input_sign"
+              class="input_login"
               type="text"
               name="txt"
               placeholder="User name"
@@ -19,7 +19,7 @@
               v-model="username"
             />
             <input
-              class="input_sign"
+              class="input_login"
               type="password"
               name="pswd"
               placeholder="비밀번호"
@@ -27,7 +27,7 @@
               v-model="password"
             />
 
-            <button type="submit" class="button_sign">Login</button>
+            <button type="submit" class="button_login">Login</button>
             <p v-if="err_msg" class="err_msg vibration">
               {{ err_msg }}
             </p>
@@ -103,11 +103,14 @@ export default {
 #form {
   background-color: transparent;
 }
-.signup_back {
-  background-image: url('https://images.unsplash.com/photo-1509822929063-6b6cfc9b42f2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
+.login_back {
+  background-image: url('https://images.hdqwalls.com/wallpapers/raya-and-the-last-dragon-10k-gl.jpg');
   background-size: cover;
+  /* filter:  brightness(40%); */
   width: 100%;
   height: 900px;
+  /* filter: blur(20px); */
+
 }
 .main {
   position: fixed;
@@ -120,7 +123,7 @@ export default {
   margin-top: 2rem;
 }
 
-.label_sign {
+.label_login {
   font-family: PreM;
   color: #fff;
   font-size: 2rem;
@@ -131,7 +134,7 @@ export default {
   cursor: pointer;
   transition: 0.5s ease-in-out;
 }
-.input_sign {
+.input_login {
   width: 60%;
   height: 2rem;
   background: #e0dede;
@@ -144,7 +147,7 @@ export default {
   border-radius: 0.5rem;
   font-family: NeoBD;
 }
-.button_sign {
+.button_login {
   font-family: PreT;
   width: 60%;
   height: 40px;
@@ -163,7 +166,7 @@ export default {
   cursor: pointer;
   background-color: transparent;
 }
-.button_sign:hover {
+.button_login:hover {
   background: #226efc;
 }
 

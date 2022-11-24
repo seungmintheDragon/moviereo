@@ -1,6 +1,12 @@
 <template>
   <div id="app">
     <nav>
+      <div class="logo" style="">
+      <a href="#"><img src="@/assets/movieball_title.png"
+      style="width:10rem;height:5rem;float:left;display:flex;
+      margin-top:-1.2rem;margin-bottom:1.2rem;"></a>
+      </div>
+      <div style="margin-top:1.5rem;margin-right:10rem;justify-content: center;">     
       <router-link to="/">메인</router-link> |
       <router-link :to="{ name: 'recomaintview' }">영화 추천</router-link> |
       <router-link to="/mypage">마이페이지</router-link> |
@@ -19,6 +25,7 @@
       <span :class="{ dinone: !is_logined }">
         <router-link to="/logout">로그아웃</router-link> |
       </span>
+      </div> 
     </nav>
     <router-view />
     <loading-spinner :loading="!isLoading" />
@@ -132,18 +139,19 @@ nav a {
 }
 
 nav a.router-link-exact-active {
-  color: #ffdb3b;
+  color: #2962ff;
 }
 nav a:hover {
-  color: #ffdb3b;
+  color: #2962ff;
 }
 
 .searchbar {
-  border-radius: 5rem;
-  opacity: 50%;
-  background-color: #e0e0e0;
+  width: 12%;
+  border: none;
+  outline: none;
+  background: none;
   color:#fff;
-  border: 0;
+  border-bottom: solid 1px #2962ff;
   outline: 0;
   font-family: NeoLT;
 }

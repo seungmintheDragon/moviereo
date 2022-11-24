@@ -45,17 +45,17 @@
               </div>
               <div class="flex justify-center py-4 lg:pt-4 pt-8" style="background-color:transparent">
                 <div class="mr-4 p-3 text-center" style="background-color:transparent">
-                  <span class="text-xl  block uppercase tracking-wide text-blueGray-600" style="background-color:transparent">22</span><span class="text-sm text-blueGray-400" style="font-family:PreM;background-color:transparent;">댓글</span>
+                  <span class="text-xl  block uppercase tracking-wide text-blueGray-600" style="background-color:transparent">3</span><span class="text-sm text-blueGray-400" style="font-family:PreM;background-color:transparent;">댓글</span>
                 </div>
                 <div class="mr-4 p-3 text-center" style="background-color:transparent">
-                  <span class="text-xl block uppercase tracking-wide text-blueGray-600" style="background-color:transparent" >10</span><span class="text-sm text-blueGray-400" style="font-family:PreM;background-color:transparent;">컬렉션</span>
+                  <span class="text-xl block uppercase tracking-wide text-blueGray-600" style="background-color:transparent" >6</span><span class="text-sm text-blueGray-400" style="font-family:PreM;background-color:transparent;">컬렉션</span>
                 </div>
               </div>
             </div>
           </div>
 
           <div
-          id="create_collections" class="create_collections" 
+          class="create_collections" id="create_collections"
           style="background-color:transparent">
           <MovieCollection
           v-for="movie_list in userMovieList"
@@ -63,6 +63,15 @@
           :movie_list=movie_list
           style="background-color:transparent"
           />
+          </div>
+
+          
+          <div class="mycontent">
+            <movie-comment-list
+            v-for="comment in commentLists"
+            :key="comment.id"
+            :comment=comment
+            />
           </div>
 
         </div>
@@ -84,12 +93,6 @@
         </div>
 
         <div class="mycontent">
-          <MovieCollection
-          v-for="movie_list in userMovieList"
-          :key="movie_list.id"
-          :movie_list=movie_list
-          />
-
           <div
           v-for="comment in commentLists"
           :key="comment.id"
@@ -106,6 +109,7 @@
 <script>
 import axios from 'axios'
 import MovieCollection from '@/components/MovieCollection.vue'
+import MovieCommentList from '../components/MovieCommentList.vue'
 
 export default {
     name:'MyPageView',
@@ -121,7 +125,8 @@ export default {
         }
     },
     components:{
-      MovieCollection
+      MovieCollection,
+        MovieCommentList
     },
     methods:{
       commentList(){
@@ -151,17 +156,18 @@ export default {
         .catch(()=>{
           this.$router.push({name:'login'})
         })
-      }
+      },
+      collections_click() {
+        const create_collections = document.getElementById("create_collections");
+        if (create_collections.style.visibility !== "visible") {
+          create_collections.style.visibility = "visible";
+        } else {
+          create_collections.style.visibility = "hidden";
+        }
+      },
+      
     },
-    // 클릭
-    collections_click() {
-      const create_collections = document.getElementById("create_collections");
-      if (create_collections.style.visibility !== "visible") {
-        create_collections.style.visibility = "visible";
-      } else {
-        create_collections.style.visibility = "hidden";
-      }
-    },
+    // 컬렉션 클릭
     created(){
       this.userProfile()
       this.commentList()

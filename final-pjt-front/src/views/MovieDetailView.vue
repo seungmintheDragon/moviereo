@@ -487,6 +487,8 @@ export default {
       }
       // 토글 할 버튼 선택 (btn1)
       const modal_like = document.getElementById("modal_like");
+      const create_collection = document.getElementById("create_collection");
+
       // 숨기기 (visibility: hidden)
       if (modal_like.style.visibility !== "visible") {
         modal_like.style.visibility = "visible";
@@ -494,6 +496,9 @@ export default {
       // 보이기 (visibility: visible)
       else {
         modal_like.style.visibility = "hidden";
+      }
+      if(create_collection.style.visibility == "visible"){
+        create_collection.style.visibility = "hidden";
       }
     },
     collection_click() {

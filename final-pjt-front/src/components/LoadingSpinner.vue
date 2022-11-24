@@ -1,12 +1,15 @@
 <!-- Spinner.vue -->
 <template>
     <div>
-        <div class="lds-facebook" v-if="loading" style="background-color: rgba(0,0,0,0.25)">
-            <div>
+        <div class="lds-facebook" v-if="loading" style="background-color: transparent">
+            <div style="font-family:NeoBD;">
+                로
             </div>
-            <div>
+            <div style="font-family:NeoBD;">
+                딩
             </div>
-            <div>
+            <div style="font-family:NeoBD;">
+                중
             </div>
         </div>
     </div>
@@ -26,29 +29,29 @@ export default {
 .lds-facebook {
     display: inline-block;
     position: absolute;
-    width: 64px;
-    height: 64px;
+    width: 120px;
+    height: 120px;
     top: 47%;
     left: 47%
 }
 .lds-facebook div {
     display: inline-block;
     position: absolute;
-    left: 6px;
-    width: 13px;
-    background: #42b883;
+    left: 10px;
+    width: 20px;
+    background: #4d7cff;
     animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
 }
 .lds-facebook div:nth-child(1) {
-    left: 6px;
+    left: 10px;
     animation-delay: -0.24s;
 }
 .lds-facebook div:nth-child(2) {
-    left: 26px;
+    left: 40px;
     animation-delay: -0.12s;
 }
 .lds-facebook div:nth-child(3) {
-    left: 45px;
+    left: 70px;
     animation-delay: 0;
 }
 @keyframes lds-facebook {

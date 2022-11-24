@@ -1,14 +1,36 @@
 <template>
-  <div style="background-color:transparent">
-    <span class="collection_title" style="background-color:transparent"> 
-        {{movie_list.title}}
+  <div  class="colbox">
+    <p 
+    style="font-family:NeoLT;
+    padding:0.5rem;
+    margin-bottom:1rem;
+    text-align:left;
+    position:absolute;
+    width:71.9rem;"> 컬렉션 #{{movie_list.id}}. 
+    <span style="font-family:NeoRG;background-color:transparent;">
+    {{movie_list.title}}
     </span>
-    
+    <button
+     @click='deletelist()'
+     class="btn btn-secondary btn-sm"
+     style="float:right; font-family:PreL"
+     > 삭제 </button>
+    </p>
+
+
+    <div
+    class="row row-cols row-cols-md-3 g-0 outcard"
+    style="background-color:transparent;"
+    >
     <MovieCollectionCard
-    style="background-color:transparent"
+    style="background-color:transparent;
+    display:;
+    "
     v-for="movie in movie_list.movies"
     :key="movie.id"
     :movie="movie"/>
+
+    </div>
     </div>
 
 </template>
@@ -23,6 +45,7 @@ export default {
     data(){
         return{
             movies:null,
+            
         }
     },
     props:{
@@ -47,6 +70,14 @@ export default {
 </script>
 
 <style>
+.colbox{
+  background-color:transparent; 
+  border:solid 1px black;
+  box-shadow:3px 3px 1px gray;
+  margin:1rem;
+  overflow-x:scroll;
+  overflow-y:hidden;
+}
 .collection_title{
     font-family: NeoBD;
     font-size:2vW;

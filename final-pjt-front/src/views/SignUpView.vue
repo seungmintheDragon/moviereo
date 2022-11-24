@@ -107,7 +107,7 @@ export default {
   background-color: transparent;
 }
 .signup_back {
-  background-image: url(../assets/movie_back.jpg);
+  background-image: url('https://images.hdqwalls.com/wallpapers/the-matrix-resurrections-10k-2r.jpg');
   background-size: cover;
   width: 100%;
   height: 900px;
