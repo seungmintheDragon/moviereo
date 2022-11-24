@@ -335,19 +335,22 @@
       <!-- 비슷한 영화 -->
       <div>
         <div class="similar_movie">
-          <h3
+          <div
             style="
               font-family: NeoBD;
               background-color: transparent;
               text-align: left;
-            "
+              position:absolute;
+              top:66%; left:6%; font-size:1.3vW;"
           >
             비슷한 영화
-          </h3>
+            <hr>
+          </div>
           <div
-            class="row row-cols row-cols-md-3 g-3"
-            style="margin-top:5px
-                    background-color:transparent;width:14rem; height:21rem;"
+            class="row row-cols row-cols-md-3"
+            style="position:absolute;
+              top:72%; left:5.5%;
+                    background-color:transparent;width:50rem; height:21rem;"
           >
             <movie-similar-card
               v-for="similar_movie in movie_detail.relate_movie"
@@ -361,12 +364,11 @@
     <!-- 재생목록 추가 예정 -->
 
     <!-- 댓글 확인란-->
+    <hr style="margin-top:5rem;">
     <div id="comments" class="comment_box">
-      <hr />
-      <p style="font-family: NeoBD; font-size: 1.5rem">영화 감상평</p>
-      <hr />
+      <p style="font-family: NeoBD; font-size: 1.5rem; margin-left:1rem;">영화 감상평</p>
       <div>
-        <div v-for="comment in movie_detail.comment" :key="comment.id">
+        <div v-for="comment in movie_detail.comment" :key="comment.id" style="background-color:">
           <div class="comment_user">
             {{ comment.user.username }}
             <span
@@ -383,6 +385,7 @@
           <span class="comment_content">
             {{ comment.comment }}
           </span>
+          <!-- <span @click="deleteComment(movie_pk)"> 삭제 </span> -->
         </div>
       </div>
     </div>

@@ -27,7 +27,9 @@
 
             <div class="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center" style="background-color:transparent">
               <div class="py-6 px-3 mt-32 sm:mt-0"  style="background-color:transparent" >
-                <button class="btn btn-primary m-2" type="button" style="font-family:NeoLT;background-color: dodgerblue;border:none;">
+                <button 
+                @click="contents_click"
+                class="btn btn-primary m-2" type="button" style="font-family:NeoLT;background-color: dodgerblue;border:none;">
                   내 댓글
                 </button>
                 <button 
@@ -61,16 +63,17 @@
           v-for="movie_list in userMovieList"
           :key="movie_list.id"
           :movie_list=movie_list
-          style="background-color:transparent"
+          style="background-color:transparent;"
           />
           </div>
 
           
-          <div class="mycontent">
+          <div class="mycontent" id="mycontent" style="position: absolute;background-color:transparent;">
             <movie-comment-list
-            v-for="comment in commentLists"
-            :key="comment.id"
-            :comment=comment
+            v-for="comments in commentLists"
+            :key="comments.id"
+            :comments=comments
+            
             />
           </div>
 
@@ -164,10 +167,31 @@ export default {
       },
       collections_click() {
         const create_collections = document.getElementById("create_collections");
+        const mycontent = document.getElementById("mycontent");
+
         if (create_collections.style.visibility !== "visible") {
           create_collections.style.visibility = "visible";
-        } else {
+        } 
+        else {
           create_collections.style.visibility = "hidden";
+        }
+          if(mycontent.style.visibility != "hidden"){
+            mycontent.style.visibility = "hidden";
+          }
+      },
+      contents_click() {
+        const mycontent = document.getElementById("mycontent");
+        const create_collections = document.getElementById("create_collections");
+
+        if(create_collections.style.visibility != "hidden"){
+        create_collections.style.visibility = "hidden";
+
+        }
+        if (mycontent.style.visibility !== "visible") {
+          mycontent.style.visibility = "visible";
+        } 
+        else {
+          mycontent.style.visibility = "hidden";
         }
       },
       
@@ -217,9 +241,12 @@ export default {
 /* 콘텐츠 */
 
 .mycontent{
-  float:right;
+  top:30%;
+  left:30%;
   width:65%;
   border: solid 0.1rem white;
+  visibility: hidden;
+
 
 }
 
@@ -229,6 +256,6 @@ export default {
 }
 
 .create_collections{
-  visibility: hidden;
+  visibility: visible;
 }
 </style>

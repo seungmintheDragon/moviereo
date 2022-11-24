@@ -20,7 +20,7 @@
 
     <div
     class="row row-cols row-cols-md-3 g-0 outcard"
-    style="background-color:transparent;"
+    style="background-color:transparent;width:auto; display:flex;"
     >
     <MovieCollectionCard
     style="background-color:transparent;

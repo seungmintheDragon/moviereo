@@ -1,12 +1,12 @@
 <template>
 <div class="card-container"> 
   <div class="card card--dark"><a href="javascript:return false;">
-      <div class="card--display"><i class="material-icons">title</i>
-        <h2>{{ recomovie.title }}</h2>
+      <div class="card--display"><i class="material-icons" style="font-family:PreT; font-size:2rem;margin:2rem;">  </i>
+        <p style="font-family:NeoLT; margin:auto;">{{ recomovie.title }}</p>
       </div>
       <div class="card--hover">
-        <h2>title : {{ recomovie.title }}</h2>
-        <p v-for="movie in recomovie.movies" :key="movie.id">{{ movie.title }}</p>
+        <h2 style="font-family:NeoLT;"># {{ recomovie.title }}</h2>
+        <p v-for="movie in recomovie.movies" :key="movie.id" style="font-family:NeoLT;" >{{ movie.title }}</p>
         <p class="link"></p>
       </div></a>
     <div class="card--border"></div>

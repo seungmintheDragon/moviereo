@@ -88,9 +88,6 @@ export default {
   color: white;
   word-break: keep-all;
 
-
-
-
 }
 
 </style>
