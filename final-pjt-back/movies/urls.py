@@ -3,6 +3,7 @@ from . import views
 
 
 urlpatterns = [
+    path('nothing/', views.nothing),
     path('', views.home_movies),
     path('<int:movie_pk>/', views.movie_detail),
     path('<int:movie_pk>/comment/', views.movie_comment),
@@ -26,4 +27,10 @@ urlpatterns = [
     path('actor/<int:actor_pk>/', views.actor_movie),
     # 감독별
     path('director/<int:director_pk>/', views.director_movie),
+
+    # 인기순
+    path('popular/', views.popular),
+
+    # 온스크린
+    path('onscreen/', views.onscreen),
 ]

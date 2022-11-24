@@ -153,13 +153,14 @@
           </div>
           <!-- 댓글 작성 -->
           <!-- 코멘트 모달 테스트 -->
-          <div style="background: transparent">
+          <div style="background: transparent" >
             <button
               type="button"
               class="button btn_write"
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
               data-bs-whatever="@getbootstrap"
+              v-if="islogin"
             >
               🖊️댓글 작성
             </button>
@@ -261,7 +262,7 @@
           </div>
 
           <!-- 컬렉션 버튼  -->
-          <div style="background-color: transparent">
+          <div style="background-color: transparent" v-if="islogin">
             <button @click="modal_click" class="btn_like">+</button>
             <div class="modal_like" id="modal_like">
               <!-- 헤더로 -->
@@ -405,6 +406,7 @@ export default {
       rate: null,
       isclicked: false,
       collection_title: null,
+      islogin: true,
     };
   },
   components: {
@@ -479,6 +481,10 @@ export default {
     },
     // 모달 클릭 여부
     modal_click() {
+      // 로그인 여부
+      if (!this.islogin) {
+        return alert('로그인 해주세요.')
+      }
       // 토글 할 버튼 선택 (btn1)
       const modal_like = document.getElementById("modal_like");
       // 숨기기 (visibility: hidden)
@@ -595,6 +601,18 @@ export default {
 
   created() {
     this.getMovieDetail(this.$route.params.movie_pk);
+    // 로그인 검사
+    axios({
+          method:'get',
+          url:"http://127.0.0.1:8000/accounts/profile/",
+          headers:{ 'Authorization': `Bearer ${localStorage.getItem('jwt')}`}
+        })
+        .then(()=>{
+          this.islogin = true
+        })
+        .catch(()=>{
+          this.islogin = false
+        })
   },
 };
 </script>

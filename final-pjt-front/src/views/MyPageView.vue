@@ -64,7 +64,9 @@ export default {
           console.log(res)
           this.commentLists = res.data
         })
-        .catch((err)=>console.log(err))
+        .catch((err)=>{
+          console.log(err)
+        })
       },
       userProfile(){
         axios({
@@ -75,14 +77,14 @@ export default {
         .then((res)=>{
           this.user_data = res.data
         })
-        .catch((err)=>console.log(err))
+        .catch(()=>{
+          this.$router.push({name:'login'})
+        })
       }
-      
     },
     created(){
       this.userProfile()
-      this.commentList()
-      
+      this.commentLists()
     }
 }
 </script>

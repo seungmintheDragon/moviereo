@@ -5,6 +5,8 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from django.db.models import Q
 from . import recommande_movie
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
 # from . import movieitem
 
 from .serializers import *
@@ -161,8 +163,6 @@ def recommend(request):
 def genre_movie(request, genre_pk):
     if request.method == 'GET':
         genre = Genre.objects.get(pk=genre_pk)
-
-
         movie = genre.movie_set.all()
         serializer = MovieDetailSerializer(movie, many=True)
         return Response(serializer.data)
@@ -185,3 +185,30 @@ def director_movie(request, director_pk):
         movie = director.movie_set.all()
         serializer = MovieDetailSerializer(movie, many=True)
         return Response(serializer.data)
+
+@api_view(['GET'])
+def nothing(request):
+    return Response(status=status.HTTP_202_ACCEPTED)
+
+@api_view(['GET'])
+def popular(request):
+    if request.method == 'GET':
+        inner_q = Movie.objects.all().order_by('-popularity').values('pk')[0:100]
+        movies = Movie.objects.filter(pk__in=inner_q).filter(vote_average__gt=7)
+        serializer = HomeMovieSerializer(movies, many=True)
+        return Response(serializer.data)
+
+@api_view(['GET'])
+def onscreen(request):
+    if request.method == 'GET':
+        now = datetime.now()
+        before_one_month = now - relativedelta(weeks=2)
+        after_one_month = now + relativedelta(months=1)
+        before_one_month = before_one_month.strftime('%Y-%m-%d')
+        after_one_month = now.strftime('%Y-%m-%d')
+        print(before_one_month, after_one_month)
+        movies = Movie.objects.filter(release_date__range=[before_one_month, after_one_month]).order_by('-release_date')
+        serializer = HomeMovieSerializer(movies, many=True)
+        return Response(serializer.data)
+
+        
