@@ -6,7 +6,7 @@
         style="width: 16rem; height: 24rem; "
         :class="{ ba }"
       >
-        <img
+        <img v-if="recomovie.poster_path"
           :src="`https://image.tmdb.org/t/p/w500${recomovie.poster_path}`"
           class="card-img-top cardimg"
           :class="{select:torf}"
@@ -14,6 +14,7 @@
           @click="recommand_movie(recomovie)"
           style="width: 16rem; height: 24rem"
         />
+        <img v-else src="../assets/null_image.jpg" >
         <img v-if="torf" class="check_sign" src="../assets/iconimg/check-sign.png" alt="-"/>
       </div>
     </div>

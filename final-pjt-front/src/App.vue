@@ -139,9 +139,13 @@ nav a:hover {
 }
 
 .searchbar {
-  border-radius: 30px;
+  border-radius: 5rem;
   opacity: 50%;
-  border: #e0e0e0;
+  background-color: #e0e0e0;
+  color:#fff;
+  border: 0;
+  outline: 0;
+  font-family: NeoLT;
 }
 
 

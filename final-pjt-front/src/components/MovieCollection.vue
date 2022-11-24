@@ -1,10 +1,11 @@
 <template>
-  <div>
-    <span class="collection_title"> 
+  <div style="background-color:transparent">
+    <span class="collection_title" style="background-color:transparent"> 
         {{movie_list.title}}
     </span>
     
     <MovieCollectionCard
+    style="background-color:transparent"
     v-for="movie in movie_list.movies"
     :key="movie.id"
     :movie="movie"/>

@@ -1,10 +1,12 @@
 <template>
 <div>
-    <div class="" @click="movie_detail">
-        <div>
-            <img class="col_image" :src="`https://image.tmdb.org/t/p/original${movie.backdrop_path}`" alt="">
+    <div class="" @click="movie_detail" style="background-color:transparent">
+        <div style="background-color:transparent">
+            <img class="col_image" :src="`https://image.tmdb.org/t/p/original${movie.backdrop_path}`" alt="" style="background-color:transparent">
         </div>
-        {{movie.title}}
+        <span style="background-color:transparent;color:black; font-family: NeoBD;"> 
+            {{movie.title}}
+        </span>
 
     </div>
 </div>

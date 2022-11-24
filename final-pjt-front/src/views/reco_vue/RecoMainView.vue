@@ -33,24 +33,31 @@
 
     </div>
     <!-- 선택된 영화 보여주기 -->
-    <div>
-      <div v-for="cart_list in movie_cart" :key="cart_list.id">
-        <p>
-          {{ cart_list.title }}
-        </p>
-        <button type="button" class="btn btn-primary" @click="cart(cart_list)">
-          삭제
-        </button>
+    <div style="width:80%; margin: auto; display: block;">
+      <div class="moviecart">
+        <div class="selected_movie" v-for="cart_list in movie_cart" :key="cart_list.id">
+          
+          <p class="selected_title">
+            {{ cart_list.title }}
+          </p>
+          <button type="button" class="btn btn-primary" @click="cart(cart_list)" style="margin-bottom:1rem;border-radius: 1rem;">
+            삭제
+          </button>
+        </div>
       </div>
-      <button
-        type="button"
-        class=""
-        v-if="movie_cart.length"
-        @click="recomive"
-      >
-        영화 추천!
-      </button>
     </div>
+    <button
+      type="button"
+      class="recobtn"
+      v-if="movie_cart.length"
+      @click="recomive"
+    >
+      영화 추천!
+    </button>
+
+
+
+
     <!-- 선택할 영화 카드 보여주기 -->
     <div>
       <div class="recommand_movie1">
@@ -73,6 +80,7 @@
     </div>
   </div>
 </template>
+
 
 <script>
 import MovieListItem from "../../components/MovieListItem.vue";
@@ -126,6 +134,21 @@ export default {
 width:30rem;
 margin: auto;
 }
+
+.selected_movie{
+  width:15rem;
+  border-radius: 2rem;
+  background-color: rgba(36, 36, 36, 0.25);
+  color : rgb(255, 255, 255);
+  box-shadow: 10px 10px 20px black;
+  text-align: center;
+  margin-left:1rem;
+}
+.selected_title{
+  margin-top:1rem;
+  font-family: NeoRG;
+  background-color: transparent;
+}
 .input-group{
   border-radius: 1rem;
   /* box-shadow: 0.3rem 0.3rem black ; */
@@ -155,4 +178,29 @@ margin: auto;
   background-color: rgb(34, 111, 255);
 
 }
+
+.moviecart{
+  display: flex;
+  padding:2rem;
+  font-family: NeoRG;
+  width:auto;
+  height:auto;
+  margin-top:1rem;
+}
+
+.recobtn{
+  border-radius: 0.7rem;
+  background-color: rgb(34, 111, 255);
+  color:white;
+
+}
+
+/* 꽃가루 */
+.canvas{
+  z-index:10;
+  pointer-events:none;
+  position: fixed;
+  top:0;
+  transform: scale(1.1);}
+
 </style>

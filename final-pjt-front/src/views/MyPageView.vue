@@ -1,36 +1,106 @@
 <template>
-  <div class="mypage_wrap">
-    <div class="mypage">
-      <div class="profile_area">
-        <!-- 이미지 -->
-        <div class="user_profile_box">
-          <img class="user_profile_img" src="../assets/default_source/cat.jpg" alt="profile">
-        </div>
-        <div class="user_name"> {{user_data.username}} 님 </div>
-        <br>
-        <!-- 선택 -->
-        <button class="btn btn-success"> 내가 쓴 댓글 </button> <br>
-        <button class="btn btn-primary"> 영화 컬렉션 </button>
-      </div>
+<div>
+<link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
+<main class="profile-page">
+  <section class="relative block h-500-px">
+    <div class="absolute top-0 w-full h-full bg-center bg-cover" style="
+            background-image: url('https://images.unsplash.com/photo-1485846234645-a62644f84728?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1159&q=80');
+            mask-image: linear-gradient(to top, transparent 5%, black 30%);
 
-      <div class="mycontent">
-        <MovieCollection
-        v-for="movie_list in userMovieList"
-        :key="movie_list.id"
-        :movie_list=movie_list
-        />
-
-        <div
-        v-for="comment in commentLists"
-        :key="comment.id"
-        >
-        {{comment.movie}}
-        {{comment.comment}}
-        </div>
-      </div>
-
+            ">
+      <span id="blackOverlay" class="w-full h-full absolute opacity-50 bg-black" style="left:0;"></span>
     </div>
-  </div>
+
+  </section>
+
+  <section class="relative py-16 "  >
+    <div class="container mx-auto px-4" style="border-radius: 1rem;background-color:transparent;" >
+      <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64"  style="background-color:transparent" >
+        <div class="px-6"  style="background-color:transparent;border:none;" >
+          <div class="flex flex-wrap justify-center"  style="background-color:transparent" >
+            <div class="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center"  style="background-color:transparent;border:none;" >
+              <div class="relative "  style="background-color:transparent;border:none;">
+                <img alt="..." src="../assets/default_source/profile_cat.png" class="shadow-xl rounded-full h-auto align-middle border-whi absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px" 
+                style="border:none;">
+              </div>
+            </div>
+
+            <div class="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center" style="background-color:transparent">
+              <div class="py-6 px-3 mt-32 sm:mt-0"  style="background-color:transparent" >
+                <button class="btn btn-primary m-2" type="button" style="font-family:NeoLT;background-color: dodgerblue;border:none;">
+                  내 댓글
+                </button>
+                <button 
+                @click="collections_click"
+                class="btn btn-primary" type="button" style="font-family:NeoLT;background-color:steelblue;border:none;">
+                  내 컬렉션
+                </button>
+              </div>
+            </div>
+            <div class="w-full lg:w-4/12 px-4 lg:order-1" style="background-color:transparent">
+              <div class="text-center mt-12" style="background-color:transparent">
+                <p class="user_name" style="background-color:transparent;font-family: PreB;color:darkslategrey">
+                  {{user_data.username}}'s Profile
+                </p>
+              </div>
+              <div class="flex justify-center py-4 lg:pt-4 pt-8" style="background-color:transparent">
+                <div class="mr-4 p-3 text-center" style="background-color:transparent">
+                  <span class="text-xl  block uppercase tracking-wide text-blueGray-600" style="background-color:transparent">22</span><span class="text-sm text-blueGray-400" style="font-family:PreM;background-color:transparent;">댓글</span>
+                </div>
+                <div class="mr-4 p-3 text-center" style="background-color:transparent">
+                  <span class="text-xl block uppercase tracking-wide text-blueGray-600" style="background-color:transparent" >10</span><span class="text-sm text-blueGray-400" style="font-family:PreM;background-color:transparent;">컬렉션</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+          id="create_collections" class="create_collections" 
+          style="background-color:transparent">
+          <MovieCollection
+          v-for="movie_list in userMovieList"
+          :key="movie_list.id"
+          :movie_list=movie_list
+          style="background-color:transparent"
+          />
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+</div>
+    <!-- <div class="mypage_wrap">
+      <div class="mypage">
+        <div class="profile_area">
+          <div class="user_profile_box">
+            <img class="user_profile_img" src="../assets/default_source/cat.jpg" alt="profile">
+          </div>
+          <div class="user_name"> {{user_data.username}} 님 </div>
+          <br>
+          <button class="btn btn-success"> 내가 쓴 댓글 </button> <br>
+          <button class="btn btn-primary"> 영화 컬렉션 </button>
+        </div>
+
+        <div class="mycontent">
+          <MovieCollection
+          v-for="movie_list in userMovieList"
+          :key="movie_list.id"
+          :movie_list=movie_list
+          />
+
+          <div
+          v-for="comment in commentLists"
+          :key="comment.id"
+          >
+          {{comment.movie}}
+          {{comment.comment}}
+          </div>
+        </div>
+
+      </div>
+    </div> -->
 </template>
 
 <script>
@@ -83,6 +153,15 @@ export default {
         })
       }
     },
+    // 클릭
+    collections_click() {
+      const create_collections = document.getElementById("create_collections");
+      if (create_collections.style.visibility !== "visible") {
+        create_collections.style.visibility = "visible";
+      } else {
+        create_collections.style.visibility = "hidden";
+      }
+    },
     created(){
       this.userProfile()
       this.commentList()
@@ -122,7 +201,6 @@ export default {
 .user_name{
   font-family: PreS;
   font-size: 1.5rem;
-  margin-top:0.5rem;
 }
 
 /* 콘텐츠 */
@@ -137,5 +215,9 @@ export default {
 /* 배경 */
 .mypage_wrap{
   background-image: url('../assets/profile_back.jpg');
+}
+
+.create_collections{
+  visibility: hidden;
 }
 </style>

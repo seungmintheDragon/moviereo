@@ -8,7 +8,7 @@
             style="background-color: transparent"
           >
             <label class="label_sign" style="background-color: transparent"
-              >Sign up</label
+              >Login</label
             >
             <input
               class="input_sign"
@@ -27,7 +27,7 @@
               v-model="password"
             />
 
-            <button type="submit" class="button_sign">Sign up</button>
+            <button type="submit" class="button_sign">Login</button>
             <p v-if="err_msg" class="err_msg vibration">
               {{ err_msg }}
             </p>
@@ -104,7 +104,7 @@ export default {
   background-color: transparent;
 }
 .signup_back {
-  background-image: url(../assets/movie_back.jpg);
+  background-image: url('https://images.unsplash.com/photo-1509822929063-6b6cfc9b42f2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
   background-size: cover;
   width: 100%;
   height: 900px;
