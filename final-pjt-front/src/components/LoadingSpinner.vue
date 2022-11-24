@@ -1,6 +1,6 @@
 <!-- Spinner.vue -->
 <template>
-    <div class="lds-facebook" v-if="loading" style="background-color: rgba(0,0,0,0.25)">
+    <div class="lds-facebook" v-if="loading" >
         <div>
         </div>
         <div>

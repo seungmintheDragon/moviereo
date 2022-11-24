@@ -1,23 +1,25 @@
 <template>
-  <div>
-    <div class="col">
+  <div style="background-color: transparent;">
+    <div class="col" style="background-color: transparent; " >
       <div
-        class="card card-container border-0 moviecard"
-        style="width: 16rem; height: 24rem"
+        class="card card-container border-0 movie-list-card"
+        style="width: 16rem; height: 24rem; "
         :class="{ ba }"
       >
-        <p class="movie-title" :class="{ select: torf }">
-          {{ recomovie.title }}
-        </p>
         <img
           :src="`https://image.tmdb.org/t/p/w500${recomovie.poster_path}`"
           class="card-img-top cardimg"
+          :class="{select:torf}"
           alt="..."
           @click="recommand_movie(recomovie)"
           style="width: 16rem; height: 24rem"
         />
+        <img v-if="torf" class="check_sign" src="../assets/iconimg/check-mark-dark.png" alt="-"/>
       </div>
     </div>
+    <p class="movie-list-title">
+      {{ recomovie.title }}
+    </p>
   </div>
 </template>
 
@@ -43,62 +45,58 @@ export default {
 </script>
 
 <style>
-.moviecard {
+.movie-list-card {
   background-color: black;
-  box-shadow: 10px 10px 30px black;
   position: relative;
 }
-
-/* .moviecard::before{
-  opacity: 1;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  background-color: #000;
-} */
 
 .card-container {
   position: relative;
   background-color: transparent;
 }
 
-.moviecard:hover {
-  background-color: transparent;
+.movie-list-card:hover {
+  animation: up .3s ;
+  background-color:transparent;
+
 }
 
 .cardimg:hover {
+  position: relative;
   opacity: 0.3;
 }
 
-.movie-title {
-  position: absolute;
-  opacity: 0;
+.movie-list-title{
+  position:absolute;
+  margin-top:0.5rem;
+  width:16rem;
   text-align: center;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: NeoEB;
-  font-size: 1.4rem;
-  background-color: transparent;
-  word-wrap: break-word;
-  text-shadow: 0.2rem 0.2rem 5rem black;
-  /* -webkit-text-stroke-width: 0.8px;
-  -webkit-text-stroke-color: rgb(8, 8, 8); */
-}
-
-.moviecard:hover .movie-title {
-  opacity: 1;
-  color: white;
+  height:auto;
+  font-family: NeoRG;
   word-break: keep-all;
-  /* z-index: 5 ; */
+
 }
 
 .select {
-  opacity: 1;
-  color: white;
-  word-break: keep-all;
-  /* z-index: 5 ; */
+  background-color:black;
+  opacity: 0.3;
+
+}
+.check_sign{
+  position: absolute;
+  width:5rem;
+  top:10rem;
+  left:5.5rem;
+  background-color: transparent;
+
+}
+@keyframes up { /* @keyframes를 이용해 shake의 각도를 좌우 15deg로 조정 */
+    0%{
+      top:0;
+    }
+    100%{
+      top:-1rem;
+    }
+    
 }
 </style>
