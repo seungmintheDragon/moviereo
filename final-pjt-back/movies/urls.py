@@ -33,4 +33,6 @@ urlpatterns = [
 
     # 온스크린
     path('onscreen/', views.onscreen),
+
+    path('nothing/', views.nothing),
 ]
