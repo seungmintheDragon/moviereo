@@ -6,7 +6,7 @@
           @click="getMovieId()"
           style="width:16rem; height:24rem;">
             <p class="movie-title">{{recomovie.title}} </p>
-            <img :src="`https://image.tmdb.org/t/p/w500${recomovie.poster_path}`" class="card-img-top cardimg " alt="..."
+            <img :src="`https://image.tmdb.org/t/p/w500${recomovie.poster_path}`" class="card-img-top reco-cardimg " alt="..."
             style="width:16rem; height:24rem;" 
             >
           </div>
@@ -61,7 +61,7 @@ export default {
   background-color:transparent;
 }
 
-.cardimg:hover{
+.reco-cardimg:hover{
   opacity: 0.3;
 }
 
@@ -78,8 +78,7 @@ export default {
   background-color:transparent;
   word-wrap: break-word;
   text-shadow: 0.2rem 0.2rem 5rem black ;
-  /* -webkit-text-stroke-width: 0.8px;
-  -webkit-text-stroke-color: rgb(8, 8, 8); */
+
   }
   
 
@@ -89,7 +88,6 @@ export default {
   color: white;
   word-break: keep-all;
 
-  /* z-index: 5 ; */
 
 
 

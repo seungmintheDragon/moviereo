@@ -14,7 +14,7 @@
           @click="recommand_movie(recomovie)"
           style="width: 16rem; height: 24rem"
         />
-        <img v-if="torf" class="check_sign" src="../assets/iconimg/check-mark-dark.png" alt="-"/>
+        <img v-if="torf" class="check_sign" src="../assets/iconimg/check-sign.png" alt="-"/>
       </div>
     </div>
     <p class="movie-list-title">
@@ -56,14 +56,17 @@ export default {
 }
 
 .movie-list-card:hover {
-  animation: up .3s ;
-  background-color:transparent;
+  /* animation: up .3s ; */
+  /* background-color:transparent; */
+  top:-1.5rem;
+  transform: top 1s ease 0.5s, margin-top 1s ease-out 0.5s;
+  box-shadow: 0.7rem 0.7rem 4rem black;
 
 }
 
 .cardimg:hover {
   position: relative;
-  opacity: 0.3;
+  opacity: 1;
 }
 
 .movie-list-title{
@@ -74,13 +77,13 @@ export default {
   height:auto;
   font-family: NeoRG;
   word-break: keep-all;
+  background-color: transparent;
+
 
 }
 
 .select {
-  background-color:black;
-  opacity: 0.3;
-
+  filter: brightness(40%);
 }
 .check_sign{
   position: absolute;

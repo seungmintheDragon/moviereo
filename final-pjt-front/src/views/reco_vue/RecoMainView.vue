@@ -32,7 +32,7 @@
       </button> -->
 
     </div>
-
+    <!-- 선택된 영화 보여주기 -->
     <div>
       <div v-for="cart_list in movie_cart" :key="cart_list.id">
         <p>
@@ -51,6 +51,7 @@
         영화 추천!
       </button>
     </div>
+    <!-- 선택할 영화 카드 보여주기 -->
     <div>
       <div class="recommand_movie1">
         <h3 style="font-family: NeoBD" v-if="search_list">
