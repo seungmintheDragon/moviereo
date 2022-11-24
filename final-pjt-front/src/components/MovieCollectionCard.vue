@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div class="">
+    <div class="" @click="movie_detail">
         <div>
             <img class="col_image" :src="`https://image.tmdb.org/t/p/original${movie.backdrop_path}`" alt="">
         </div>
@@ -15,6 +15,11 @@ export default {
     name:"MovieCollectionCard",
     props:{
         movie:Object,
+    },
+    methods: {
+        movie_detail() {
+        this.$router.push({name:'moviedetail', params:{movie_pk:this.movie.id}})
+    },
     }
 }
 </script>

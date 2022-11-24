@@ -7,6 +7,7 @@ from django.db.models import Q
 from . import recommande_movie
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
+from django.contrib.auth import get_user_model
 # from . import movieitem
 
 from .serializers import *
@@ -141,7 +142,9 @@ def likemoviecreate(request, movie_pk, list_pk):
 @api_view(['GET'])
 def commentlist(request):
     if request.method == 'GET':
-        comment = MovieComment.objects.all().filter(user=request.user)
+        user = get_object_or_404(get_user_model(), username=request.user)
+        comment = user.user_comment.all()
+        # comment = MovieComment.objects.all().filter(user=request.user)
         serializer = MovieCommentSerializer(comment, many=True)
         return Response(serializer.data)
 
@@ -210,5 +213,3 @@ def onscreen(request):
         movies = Movie.objects.filter(release_date__range=[before_one_month, after_one_month]).order_by('-release_date')
         serializer = HomeMovieSerializer(movies, many=True)
         return Response(serializer.data)
-
-        

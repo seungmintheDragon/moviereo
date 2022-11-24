@@ -28,7 +28,6 @@ export default {
         movie_list:Object,
     },
     methods:{
-
     deletelist() {
         axios({
             method: "delete",

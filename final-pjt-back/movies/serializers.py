@@ -35,7 +35,7 @@ class DirectorSerializer(serializers.ModelSerializer):
 class MovieSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie
-        fields = ('id',)
+        fields = ('id','title',)
 
 # 코멘트 리플라이
 class ReflyCommentSerializer(serializers.ModelSerializer):

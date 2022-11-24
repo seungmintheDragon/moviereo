@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="container_disable">
+  <div id="app">
     <nav>
       <router-link to="/">메인</router-link> |
       <router-link :to="{ name: 'recomaintview' }">영화 추천</router-link> |
@@ -67,14 +67,17 @@ export default {
         });
     },
     setLoading(isLoading) {
-      console.log("thisisloading", isLoading);
+      // console.log("thisisloading", isLoading);
       if (isLoading) {
         this.isLoading = true;
-        console.log("inIf", isLoading);
+        // console.log("inIf", isLoading);
       }
       if (!isLoading) {
         this.isLoading = false;
       }
+    },
+    here() {
+      // console.log('hhhhhhhhhhhhhhhh');
     },
   },
   created() {

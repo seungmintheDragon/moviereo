@@ -19,14 +19,14 @@
         :key="movie_list.id"
         :movie_list=movie_list
         />
-<!-- 
+
         <div
         v-for="comment in commentLists"
         :key="comment.id"
         >
         {{comment.movie}}
         {{comment.comment}}
-        </div> -->
+        </div>
       </div>
 
     </div>
@@ -65,6 +65,7 @@ export default {
           this.commentLists = res.data
         })
         .catch((err)=>{
+          console.log('commenterror');
           console.log(err)
         })
       },
@@ -84,7 +85,7 @@ export default {
     },
     created(){
       this.userProfile()
-      this.commentLists()
+      this.commentList()
     }
 }
 </script>
